@@ -1,5 +1,5 @@
-create database cosmetic_web;
-use cosmetic_web;
+create database cosmetics_web;
+use cosmetics_web;
 
 CREATE TABLE admins (
 	_id INT NOT NULL AUTO_INCREMENT,

@@ -2,7 +2,7 @@ const mysql = require("mysql");
 
 MYSQL_USER = "root";
 MYSQL_HOST = "localhost";
-MYSQL_DB = "cosmetic_web";
+MYSQL_DB = "cosmetics_web";
 MYSQL_PWD = "";
 MYSQL_PORT = "3306";
 
