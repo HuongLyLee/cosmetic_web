@@ -50,11 +50,11 @@ export default function Footer() {
               <h4 className="text-light mb-4">Địa chỉ</h4>
               <p>
                 <i className="fa fa-map-marker-alt me-3" />
-                123 Street, Hồ Chí Minh, Việt Nam
+                Số 23 Lê Văn Lương, Quận Thanh Xuân, Hà Nội
               </p>
               <p>
                 <i className="fa fa-phone-alt me-3" />
-                +012 345 67890
+                +0582 311 225
               </p>
               <p>
                 <i className="fa fa-envelope me-3" />

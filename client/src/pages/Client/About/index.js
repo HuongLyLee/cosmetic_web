@@ -39,28 +39,34 @@ export default function AboutPage() {
               </div>
             </div>
             <div className="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-              <h1 className="display-5 mb-4">COSMENTIC STORE</h1>
+              <h1 className="display-5 mb-4 ">COSMENTIC STORE</h1>
               <p className="mb-4">
-                Cosmetic thương hiệu đi đầu trong ngành phân phối mỹ phẩm chính
-                hãng, phục vụ cho nhu cầu mua sắm & làm đẹp của hàng triệu khách
-                hàng tại Việt Nam.
+                <p> <strong><em>Tại sao mint cosmetics lại chỉ muốn là một cửa hàng nhỏ chứ không phải một drugstores?</em></strong></p>
+                “Save The Best For You” – Slogan cũng như định hướng hoạt động của mint. Chúng mình làm việc với mục tiêu và định hướng
+                là mang đến những sản phẩm tốt nhất đến tay mỗi người. Nên có thể tại Mint bạn không thể tìm thấy đa dạng sản phẩm như
+                ở một drugstores, bởi vì những gì “tốt nhất”, Mint đã “chọn lọc” sẵn cho các bạn rồi :).
               </p>
               <p className="mb-4">
-                Có mặt từ năm 2009, Cosmetic đã mở rộng thị phần & nhanh chóng
-                trở thành một trong những địa chỉ mua sắm mỹ phẩm uy tín trong
-                lòng khách hàng, đến nay Cosmetic đã có 9 showroom từ Bắc chí
-                Nam.
+                <p><strong><em> Làm thế nào để thực hiện điều đó? </em></strong></p>
+                Sản phẩm của mint không nhất thiết phải là sản phẩm có công dụng tốt nhất mà phải phù hợp 3 tiêu chí của bọn mình: Chất lượng,
+                Giá thành và Phù hợp.
+                Để làm được điều này mỗi một mặt hàng được đặt trên kệ của mint đều đã qua chọn lọc cẩn thận về:
+                Nguồn gốc, chất lượng: Việc xem qua hầu hết những review khen hay chê, đặc biệt là việc testing sản phẩm trước khi đăng bán cũng
+                như việc chọn nguồn hàng
+                chất lượng có vẻ đơn giản nhưng lại tốn nhiều thời gian và cũng là công việc “khó khăn” nhất đối với chúng mình.
+                Chi phí, Giá thành: Sản phẩm tốt không hẳn phải đắt nhất, mà đối với mint đó là sản phẩm đạt chất lượng tốt nhất so với khoảng
+                giá hiện tại. Việc check giá cả tất cả những sản phẩm cùng loại để chọn ra cái gì phù hợp cái gì không cũng là điều làm chúng
+                mình đau đầu trước khi rinh em ý về trên kệ hàng.
               </p>
               <p className="mb-4">
-                Với sự phát triển không ngừng trong suốt 14 năm qua, các thương
-                hiệu mỹ phẩm trong và ngoài nước đồng loạt ký hợp đồng chiến
-                lược cùng Cosmetics để mang đến những sản phẩm chất lượng, hiệu
-                quả và an toàn với người tiêu dùng.
-              </p>
-              <p className="mb-4">
-                Đồng thời nhờ sự "hậu thuẫn" rất lớn từ các tập đoàn mỹ phẩm lớn
-                mạnh, Cosmetic cam kết mỹ phẩm chính hãng & có giá bán lẻ rẻ
-                nhất thị trường, Ở ĐÂU RẺ HƠN COSMETIC HOÀN TIỀN CHÊNH LỆCH.
+                <p><strong><em> Bạn sẽ tìm được gì ở mint?</em></strong></p>
+                Vậy đó, mint chỉ là một cửa hàng nhỏ không phải một siêu thị mỹ phẩm nên các bạn chỉ tìm được những sản phẩm ĐÃ ĐƯỢC CHỌN LỌC
+                trên kệ của chúng mình mà thôi.
+                Tại mint, chúng mình luôn cố gắng để mọi người không phải nghĩ về vấn đề đó. Chỉ việc đến cửa hàng để Mint có thể tư vấn giúp
+                bạn hoặc đôi khi đơn giản là bạn “chọn bừa”, bạn vẫn sẽ có được sản phẩm “tốt” dành cho riêng bạn.
+                PS: Mọi reviews dù khen chê cũng giúp mint thêm thông tin trong việc chọn lọc sản phẩm đến với mọi người và cải thiện dịch vụ
+                của mình hơn. Chúng mình rất cảm ơn nếu bạn bớt chút thời gian để lại Reviews về sản phẩm, dịch vụ.. hoặc bất kỳ điều gì khác
+                mà bạn muốn. Cái mint cần không phải là 5* mà là cách giúp chúng mình cải thiện về sản phẩm và khiến mọi người hài lòng hơn.
               </p>
             </div>
           </div>

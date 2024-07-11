@@ -108,7 +108,7 @@ export default function Contact() {
                 <h5 className="text-white">Số điện thoại liên hệ</h5>
                 <p className="mb-5">
                   <i className="fa fa-phone-alt me-3" />
-                  +012 345 67890
+                  +0582 311 225
                 </p>
                 <h5 className="text-white">Email</h5>
                 <p className="mb-5">
@@ -118,7 +118,7 @@ export default function Contact() {
                 <h5 className="text-white">Địa chỉ</h5>
                 <p className="mb-5">
                   <i className="fa fa-map-marker-alt me-3" />
-                  123 HCM, Việt Nam
+                  Số 23 Lê Văn Lương, Quận Thanh Xuân, Hà Nội
                 </p>
                 <h5 className="text-white">Theo dõi chúng tôi</h5>
                 <div className="d-flex pt-2">
