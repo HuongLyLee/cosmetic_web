@@ -59,11 +59,11 @@ export default function Header() {
           <div className="col-lg-6 px-5 text-start">
             <small>
               <i className="fa fa-map-marker-alt me-2" />
-              Số 23 Lê Văn Lương, Quận Thanh Xuân, Hà Nội
+              Số 23 Lê Văn Lương, Quận Thanh Xuân
             </small>
             <small className="ms-4">
               <i className="fa fa-envelope me-2" />
-              info@example.com
+              mintcosmetic@gmail.com
             </small>
           </div>
           <div className="col-lg-6 px-5 text-end">
@@ -87,10 +87,13 @@ export default function Header() {
           data-wow-delay="0.1s"
         >
           <a href="/" className="navbar-brand ms-4 ms-lg-0">
-            <h1 className="fw-bold text-primary m-0">
-              Cos<span className="text-secondary">me</span>tic
+            <h1 className="fw-bold m-0"
+                style={{ color: "#dc3545" }}
+            >
+              Mint 
             </h1>
           </a>
+          
           <button
             type="button"
             className="navbar-toggler me-4"
@@ -138,7 +141,7 @@ export default function Header() {
                 Về chúng tôi
               </a>
               <a href="/buy-guide" className="nav-item nav-link">
-                Hướng dẫn
+                Chính sách
               </a>
             </div>
             <div className="d-none d-lg-flex ms-2">

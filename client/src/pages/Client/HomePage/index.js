@@ -1,7 +1,8 @@
 import React from "react";
-import Banner1 from "../../../assets/imgs/banner1.jpeg";
+import Banner3 from "../../../assets/imgs/banner3.jpeg";
+import Banner4 from "../../../assets/imgs/banner4.jfif";
 import Banner2 from "../../../assets/imgs/banner2.jpeg";
-import AboutHomePage from "../../../assets/imgs/about-homepage.jpeg";
+import AboutHomePage from "../../../assets/imgs/about-homepage.jpg";
 import Lipstick from "../../../assets/imgs/lipstick.jpeg";
 import ListBlog from "./components/ListBlog";
 import NewProduct from "./components/NewProduct";
@@ -22,7 +23,7 @@ export default function HomePage() {
         >
           <div className="carousel-inner">
             <div className="carousel-item active">
-              <img className="w-100" src={Banner1} alt="Image" />
+              <img className="w-100" src={Banner4} alt="Image" />
               <div className="carousel-caption">
                 <div className="container">
                   <div className="row justify-content-start">
@@ -32,7 +33,8 @@ export default function HomePage() {
                       </h1>
                       <a
                         href='/'
-                        className="btn btn-primary rounded-pill py-sm-3 px-sm-5"
+                        className="btn rounded-pill py-sm-3 px-sm-5 text-white"
+                        style={{ backgroundColor: "#bd876a" }}
                       >
                         Sản phẩm
                       </a>
@@ -47,8 +49,9 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
+
             <div className="carousel-item">
-              <img className="w-100" src={Banner2} alt="Image" />
+              <img className="w-100" src={Banner3} alt="Image" />
               <div className="carousel-caption">
                 <div className="container">
                   <div className="row justify-content-start">
@@ -58,7 +61,8 @@ export default function HomePage() {
                       </h1>
                       <a
                         href='/product'
-                        className="btn btn-primary rounded-pill py-sm-3 px-sm-5"
+                        className="btn rounded-pill py-sm-3 px-sm-5"
+                        style={{ backgroundColor: "#bd876a" }}
                       >
                         Sản phẩm
                       </a>
@@ -74,6 +78,7 @@ export default function HomePage() {
               </div>
             </div>
           </div>
+
           <button
             className="carousel-control-prev"
             type="button"
@@ -95,6 +100,7 @@ export default function HomePage() {
         </div>
       </div>
       {/* Carousel End */}
+
       {/* About Start */}
       <div className="container-xxl py-5">
         <div className="container">
@@ -109,37 +115,33 @@ export default function HomePage() {
               </div>
             </div>
             <div className="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-              <h1 className="display-5 mb-4">COSMETICS</h1>
+              <h1 className="display-5 mb-4"> MINT COSMETICS</h1>
               <p className="mb-4">
-                Cosmetics - thương hiệu đi đầu trong ngành phân phối mỹ phẩm
-                chính hãng, phục vụ cho nhu cầu mua sắm & làm đẹp của hàng triệu
-                khách hàng tại Việt Nam. Có mặt từ năm 2012, Cosmetic đã mở rộng thị
-                phần & nhanh chóng trở thành một trong những địa chỉ mua sắm mỹ
-                phẩm uy tín trong lòng khách hàng, đến nay Cosmetic đã có 9 showroom
-                từ Bắc chí Nam. Với sự phát triển không ngừng trong suốt 10 năm
-                qua, các thương hiệu mỹ phẩm trong và ngoài nước đồng loạt ký
-                hợp đồng chiến lược cùng Cosmetic Cosmetics để mang đến những sản
-                phẩm chất lượng, hiệu quả và an toàn với người tiêu dùng.
+                Cosmetics - thương hiệu đi đầu trong ngành phân phối mỹ phẩm chính hãng, phục vụ cho nhu cầu 
+                mua sắm & làm đẹp của hàng triệu khách hàng tại Việt Nam. Có mặt từ năm 2012, Cosmetic đã mở 
+                rộng thị phần & nhanh chóng trở thành một trong những địa chỉ mua sắm mỹ phẩm uy tín trong 
+                lòng khách hàng, đến nay Cosmetic đã có 9 showroom từ Bắc chí Nam. Với sự phát triển không 
+                ngừng trong suốt 10 năm qua, các thương hiệu mỹ phẩm trong và ngoài nước đồng loạt ký
+                hợp đồng chiến lược cùng Cosmetic Cosmetics để mang đến những sản phẩm chất lượng, hiệu quả và an toàn với người tiêu dùng.
               </p>
               <p>
                 <i className="fa fa-check text-primary me-3" />
-                Đối với tín đồ yêu mỹ phẩm, mỗi sự khởi đầu của vẻ đẹp đều bắt
-                nguồn từ những sản phẩm chất lượng.
+                Đối với tín đồ yêu mỹ phẩm, mỗi sự khởi đầu của vẻ đẹp đều bắt nguồn từ những sản phẩm chất lượng.
               </p>
               <p>
                 <i className="fa fa-check text-primary me-3" />
-                Yên tâm mua mỹ phẩm chính hãng từ các thương hiệu lớn trên thế
-                giới
+                Yên tâm mua mỹ phẩm chính hãng từ các thương hiệu lớn trên thế giới.
               </p>
               <p>
                 <i className="fa fa-check text-primary me-3" />
-                Giá rẻ nhất thị trường - Ở đâu rẻ hơn Cosmetic hoàn tiền chênh lệch
+                Giá rẻ nhất thị trường - Ở đâu rẻ hơn Mint Cosmetic hoàn tiền chênh lệch.
               </p>
             </div>
           </div>
         </div>
       </div>
       {/* About End */}
+
       {/* Feature Start */}
       <div className="container-fluid bg-light bg-icon my-5 py-6">
         <div className="container">
@@ -210,7 +212,8 @@ export default function HomePage() {
 
       {/* Selling product */}
       <SellingProduct />
-      <ListBlog />
+
+      {/* <ListBlog /> */}
     </div>
   );
 }

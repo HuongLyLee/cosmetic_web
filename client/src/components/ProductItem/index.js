@@ -70,7 +70,7 @@ export default function ProductItem({
       <div className="d-flex border-top">
         <small className="w-50 text-center border-end py-2">
           <a className="text-body" href={`/product/${id}`}>
-            <i className="fa fa-eye text-primary me-2" />
+            <i className="fa fa-eye me-2" />
             Xem chi tiết
           </a>
         </small>

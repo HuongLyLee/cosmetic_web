@@ -105,8 +105,8 @@ export default function CartPage() {
         USER_CART_INFO + `_${userData?._id || ""}`
       )
         ? parseJSON(
-            localStorage.getItem(USER_CART_INFO + `_${userData?._id || ""}`)
-          )
+          localStorage.getItem(USER_CART_INFO + `_${userData?._id || ""}`)
+        )
         : [];
       setCartProduct(currCart);
     })();
@@ -160,20 +160,19 @@ export default function CartPage() {
   };
 
   return (
-    <div className="container" style={{ marginTop: "250px" }}>
+    <div className="container" style={{ marginTop: "200px" }}>
       <table id="cart" className="table table-hover table-condensed">
         <thead>
           <tr>
-            <th style={{ width: "30%" }}>Sản phẩm</th>
-            <th style={{ width: "10%" }}>Giá</th>
-            <th style={{ width: "10%" }}>Giá giảm</th>
-            <th style={{ width: "8%" }}>Số lượng</th>
-            <th style={{ width: "20%" }} className="text-center">
-              Tổng
-            </th>
-            <th style={{ width: "10%" }} />
+            <th style={{ width: "38%" }}>Sản phẩm</th>
+            <th style={{ width: "15%" }}>Đơn giá</th>
+            <th style={{ width: "15%" }}>Giá giảm</th>
+            <th style={{ width: "10%" }}>Số lượng</th>
+            <th style={{ width: "20%" }} className="text-center">Số tiền</th>
+            <th style={{ width: "2%" }} />
           </tr>
         </thead>
+
         <tbody>
           {cartProduct?.map((cartItem, cartIndex) => {
             return (
@@ -182,55 +181,44 @@ export default function CartPage() {
                   <div className="row">
                     <div className="col-sm-2 hidden-xs">
                       <img
-                        src={cartItem?.product_image}
-                        alt="..."
+                        src={cartItem?.product_image} alt="..."
                         className="img-responsive"
-                        width={50}
-                        height={50}
-                        placeholder="blur"
+                        width={60} height={60} placeholder="blur"
                       />
                     </div>
+
                     <div className="col-sm-10">
-                      <h5
+                      <h6
                         className="nomargin"
                         style={{
                           cursor: "pointer",
-                          color: "#3CB914",
+                          color: "#000",
                           overflow: "hidden",
                           textOverflow: "ellipsis",
                         }}
-                        onClick={() =>
-                          navigate(`/product/${cartItem?.product_id}`)
-                        }
+                        onClick={() => navigate(`/product/${cartItem?.product_id}`)}
                       >
                         {cartItem?.product_name}
-                      </h5>
+                      </h6>
                     </div>
                   </div>
                 </td>
+
                 <td data-th="Price">
                   {FORMAT_NUMBER.format(Number(cartItem.product_price))} đ
                 </td>
+
                 <td data-th="Price">
                   {cartItem.product_sale > 0 &&
-                  cartItem.product_sale !== cartItem.product_price
+                    cartItem.product_sale !== cartItem.product_price
                     ? FORMAT_NUMBER.format(Number(cartItem.product_sale)) + "đ"
                     : ""}
                 </td>
+
                 <td data-th="Quantity">
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "flex-start",
-                      alignItems: "center",
-                    }}
-                  >
+                  <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", }} >
                     <div
-                      style={{
-                        padding: "5px",
-                        background: "#DC3545",
-                        cursor: "pointer",
-                      }}
+                      style={{ padding: "2px", cursor: "pointer", border: "1px solid #e0e0e0" }}
                       onClick={() => {
                         if (cartItem?.quantity - 1 > 0) {
                           changeProductQuantity(
@@ -241,25 +229,19 @@ export default function CartPage() {
                         }
                       }}
                     >
-                      <RemoveIcon sx={{ color: "white" }} />
+                      <RemoveIcon fontSize="small" sx={{ color: "black" }} />
                     </div>
+
                     <div
                       style={{
-                        paddingTop: "6px",
-                        paddingBottom: "6px",
-                        textAlign: "center",
-                        width: "60px",
-                        background: "#f0f0f0",
+                        paddingTop: "2px", paddingBottom: "2px",
+                        textAlign: "center", width: "50px", border: "1px solid #e0e0e0"
                       }}
                     >
                       {cartItem?.quantity || 0}
                     </div>
-                    <div
-                      style={{
-                        padding: "5px",
-                        background: "#3CB914",
-                        cursor: "pointer",
-                      }}
+
+                    <div style={{ padding: "2px", cursor: "pointer", border: "1px solid #e0e0e0" }}
                       onClick={() => {
                         changeProductQuantity(
                           Number(cartItem?.quantity) + 1,
@@ -267,23 +249,25 @@ export default function CartPage() {
                         );
                       }}
                     >
-                      <AddIcon sx={{ color: "white" }} />
+                      <AddIcon fontSize="small" sx={{ color: "black" }} />
                     </div>
                   </div>
                 </td>
+
                 <td data-th="Subtotal" className="text-center">
                   {FORMAT_NUMBER.format(
                     Number(cartItem?.quantity) *
-                      (cartItem.product_sale > 0 &&
+                    (cartItem.product_sale > 0 &&
                       cartItem.product_sale !== cartItem.product_price
-                        ? Number(cartItem?.product_sale)
-                        : Number(cartItem?.product_price))
+                      ? Number(cartItem?.product_sale)
+                      : Number(cartItem?.product_price))
                   )}{" "}
                   đ
                 </td>
+
                 <td className="actions" data-th>
                   <button
-                    className="btn btn-danger btn-sm"
+                    className="btn btn-sm btn-outline-danger"
                     onClick={() => {
                       const currCart = [...cartProduct]?.filter(
                         (item) => item?.product_id !== cartItem?.product_id
@@ -303,11 +287,12 @@ export default function CartPage() {
             );
           })}
         </tbody>
+
         <tfoot>
           <tr className="visible-xs">
             <td className="text-center">
               <strong>
-                Tổng: {FORMAT_NUMBER.format(calculateTotalPrice(cartProduct))} đ
+                Tổng thanh toán: {FORMAT_NUMBER.format(calculateTotalPrice(cartProduct))} đ
               </strong>
             </td>
           </tr>
@@ -575,7 +560,7 @@ const PaymentDialog = (props) => {
             }}
             type={"date"}
             value={pickUpTime}
-            onChange={(event) =>{
+            onChange={(event) => {
               setPickUpTime(event?.target?.value)
               changePickUpTime(event?.target?.value)
             }}
@@ -623,7 +608,7 @@ const PaymentDialog = (props) => {
         <Box
           sx={{ marginTop: "30px", marginLeft: "30px", marginRight: "30px" }}
         >
-          <CardElement id="stripe-card-element" onChange={() => {}} />
+          <CardElement id="stripe-card-element" onChange={() => { }} />
         </Box>
       ) : (
         <></>

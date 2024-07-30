@@ -85,6 +85,7 @@ export default function Contact() {
         </div>
       </div>
       {/* Page Header End */}
+      
       {/* Contact Start */}
       <div className="container-xxl py-6">
         <div className="container">
@@ -95,8 +96,7 @@ export default function Contact() {
           >
             <h1 className="display-5 mb-3">Trang góp ý</h1>
             <p>
-              Những lời góp ý của các bạn chính là tài sản quý giá giúp chúng
-              tôi ngày càng hoàn thiện hơn
+              Những lời góp ý của các bạn chính là tài sản quý giá giúp chúng tôi ngày càng hoàn thiện hơn
             </p>
           </div>
           <div className="row g-5 justify-content-center">
@@ -104,7 +104,9 @@ export default function Contact() {
               className="col-lg-5 col-md-12 wow fadeInUp"
               data-wow-delay="0.1s"
             >
-              <div className="bg-primary text-white d-flex flex-column justify-content-center h-100 p-5">
+              <div className="text-black d-flex flex-column justify-content-center h-100 p-5"
+                   style={{ backgroundColor: "#f7d1b2" }}
+              >
                 <h5 className="text-white">Số điện thoại liên hệ</h5>
                 <p className="mb-5">
                   <i className="fa fa-phone-alt me-3" />
@@ -113,7 +115,7 @@ export default function Contact() {
                 <h5 className="text-white">Email</h5>
                 <p className="mb-5">
                   <i className="fa fa-envelope me-3" />
-                  info@example.com
+                  mintcosmetic@gmail.com
                 </p>
                 <h5 className="text-white">Địa chỉ</h5>
                 <p className="mb-5">
@@ -252,7 +254,8 @@ export default function Contact() {
                   </div>
                   <div className="col-12">
                     <button
-                      className="btn btn-primary rounded-pill py-3 px-5"
+                      className="btn rounded-pill py-3 px-5 text-white"
+                      style={{ backgroundColor: "#bd876a" }}
                       type="submit"
                       onClick={() => sendContact()}
                     >

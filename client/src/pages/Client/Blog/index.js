@@ -80,8 +80,7 @@ export default function BlogPage() {
           >
             <h1 className="display-5 mb-3">Bài Viết</h1>
             <p>
-              Những bài viết mới mẻ sẽ đem lại những kiến thức thú vị dành cho
-              bạn
+              Những bài viết mới mẻ sẽ đem lại những kiến thức thú vị
             </p>
           </div>
 
@@ -103,13 +102,15 @@ export default function BlogPage() {
                 />
               );
             })}
+
             <div
               className="col-12 text-center wow fadeInUp"
               data-wow-delay="0.1s"
             >
               {currentPage + 1 < totalPage ? (
                 <a
-                  className="btn btn-primary rounded-pill py-3 px-5"
+                  className="btn rounded-pill py-3 px-5 text-white"
+                  style={{ backgroundColor: "#bd876a" }}
                   href
                   onClick={() => getBlogList(currentPage + 1)}
                 >

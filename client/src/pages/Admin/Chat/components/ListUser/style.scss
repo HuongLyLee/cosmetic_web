@@ -3,15 +3,16 @@
     width: 100%;
     position: relative;
     display: flex;
+    justify-content: center;
   }
   .searchTerm {
     // margin-left: 25%;
     width: 50%;
-    border: 3px solid #3CB914;
+    border: 3px solid black;
     border-right: none;
     padding: 5px;
-    height: 37px;
-    border-radius: 5px 0 0 5px;
+    height: 42px;
+    border-radius: 20px 0 0 20px;
     outline: none;
     color: black;
   }
@@ -21,13 +22,13 @@
   }
 
   .searchButton {
-    width: 40px;
-    height: 37px;
-    border: 1px solid #3CB914;
-    background: #3CB914;
+    width: 50px;
+    height: 42px;
+    border: 3px solid black;
+    background: #e6ddd5;
     text-align: center;
     color: #fff;
-    border-radius: 0 5px 5px 0;
+    border-radius: 0 20px 20px 0;
     cursor: pointer;
     font-size: 20px;
   }

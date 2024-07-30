@@ -60,7 +60,7 @@ export const ADMIN_ROLE = [
     icon: <ContactPhoneIcon />,
   },
   {
-    label: "Hướng dẫn mua hàng",
+    label: "Chính sách",
     value: "admin-guide",
     href: "/admin/buy-guide",
     icon: <AutoStoriesIcon />,

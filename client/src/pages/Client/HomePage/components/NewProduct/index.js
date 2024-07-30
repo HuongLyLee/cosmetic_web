@@ -73,9 +73,8 @@ export default function NewProduct() {
                     style={{ marginTop: "20px" }}
                   >
                     <a
-                      className={`btn btn-outline-primary border-2 ${
-                        activeCategory === item?._id ? "active" : ""
-                      }`}
+                      className={`btn btn-outline-primary border-2 
+                                  ${activeCategory === item?._id ? "active" : ""}`}
                       data-bs-toggle="pill"
                     >
                       {item?.category_name}
@@ -115,7 +114,8 @@ export default function NewProduct() {
                 data-wow-delay="0.1s"
               >
                 <a
-                  className="btn btn-primary rounded-pill py-3 px-5"
+                  className="btn rounded-pill py-3 px-5 text-white"
+                  style={{ backgroundColor: "#bd876a" }}
                   href="/product"
                 >
                   Xem thêm

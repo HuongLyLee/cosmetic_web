@@ -14,7 +14,7 @@ import { useLocation } from "react-router-dom";
 
 const PRODUCT_IN_PAGE = 12;
 const MIN_PRICE = 1000;
-const MAX_PRICE = 10000000;
+const MAX_PRICE = 5000000;
 
 const PrettoSlider = styled(Slider)({
   color: "#52af77",
@@ -178,6 +178,7 @@ export default function Product() {
         </div>
       </div>
       {/* Page Header End */}
+      
       {/* Product Start */}
       <div className="container-xxl py-5">
         <div className="container">
@@ -206,15 +207,11 @@ export default function Product() {
                     <li
                       className="nav-item me-2"
                       key={`home-category-item-${index}`}
-                      onClick={() => {
-                        setActiveCategory(item?._id);
-                      }}
+                      onClick={() => {setActiveCategory(item?._id);}}
                       style={{ marginTop: "20px" }}
                     >
                       <a
-                        className={`btn btn-outline-primary border-2 ${
-                          activeCategory === item?._id ? "active" : ""
-                        }`}
+                        className={`btn btn-outline-dark rounded border-2 ${activeCategory === item?._id ? "active" : ""}`}
                         data-bs-toggle="pill"
                       >
                         {item?.category_name}
@@ -225,6 +222,7 @@ export default function Product() {
               </ul>
             </div>
           </div>
+
           <div className="row g-0 gx-5 align-items-start mb-5">
             <div className={`col-lg-5`} style={{ marginTop: "20px" }}>
               <Typography gutterBottom>Tìm kiếm</Typography>
@@ -315,6 +313,7 @@ export default function Product() {
                   ""}
               </div>
             </div>
+
             <div className={`col-lg-2`} />
             <div className="col-lg-5" style={{ marginTop: "20px" }}>
               <div
@@ -337,6 +336,7 @@ export default function Product() {
                     onChange={(event, newValue) => {
                       setPriceSlider(newValue);
                     }}
+                    style={{ color: '#ed6f67' }}
                   />
                   <div
                     style={{
@@ -348,7 +348,7 @@ export default function Product() {
                     <div
                       className="px-3 py-1"
                       style={{
-                        border: "1px solid rgb(60,185,20)",
+                        border: "1px solid #ed6f67",
                         maxWidth: "150px",
                         overflow: "hidden",
                         textOverflow: "ellipsis",
@@ -359,7 +359,7 @@ export default function Product() {
                     <div
                       className="px-3 py-1"
                       style={{
-                        border: "1px solid rgb(60,185,20)",
+                        border: "1px solid #ed6f67",
                         maxWidth: "150px",
                         overflow: "hidden",
                         textOverflow: "ellipsis",
@@ -369,6 +369,7 @@ export default function Product() {
                     </div>
                   </div>
                 </div>
+
                 <div
                   style={{
                     width: "60px",
@@ -377,7 +378,7 @@ export default function Product() {
                   }}
                 >
                   <FilterAltIcon
-                    sx={{ cursor: "pointer", color: "#3CB914" }}
+                    sx={{ cursor: "pointer", color: "#ed6f67" }}
                     onClick={() =>
                       getProductData(
                         activeCategory,
@@ -392,6 +393,7 @@ export default function Product() {
               </div>
             </div>
           </div>
+
           <div className="tab-content">
             {listProduct?.length ? (
               <div className="row g-4">
@@ -436,7 +438,8 @@ export default function Product() {
             {currentPage + 1 < totalPage ? (
               <div class="col-12 text-center mt-5">
                 <a
-                  class="btn btn-primary rounded-pill py-3 px-5"
+                  class="btn rounded-pill py-3 px-5"
+                  style={{ backgroundColor: "#bd876a" }}
                   onClick={() =>
                     getProductData(
                       activeCategory,

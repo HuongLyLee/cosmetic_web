@@ -60,7 +60,8 @@ export default function SellingProduct() {
                 data-wow-delay="0.1s"
               >
                 <a
-                  className="btn btn-primary rounded-pill py-3 px-5"
+                  className="btn rounded-pill py-3 px-5 text-white"
+                  style={{ backgroundColor: "#bd876a" }}
                   href="/product"
                 >
                   Xem thêm

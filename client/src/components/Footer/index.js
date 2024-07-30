@@ -5,14 +5,17 @@ export default function Footer() {
     <div>
       {/* Footer Start */}
       <div
-        className="container-fluid bg-dark footer mt-5 pt-5 wow fadeIn"
+        className="container-fluid footer mt-5 pt-5 wow fadeIn"
+        style={{ backgroundColor: "#fafafa", color: "black" }} 
         data-wow-delay="0.1s"
       >
         <div className="container py-5">
           <div className="row g-5">
             <div className="col-lg-4 col-md-6">
-              <h1 className="fw-bold text-primary mb-4">
-                Cos<span className="text-secondary">me</span>tic
+              <h1 className="fw-bold mb-4"
+                  style={{ color: "#dc3545" }} 
+              >
+                Cosmetic
               </h1>
               <p>
                 Cosmetic - thương hiệu đi đầu trong ngành phân phối mỹ phẩm
@@ -61,7 +64,10 @@ export default function Footer() {
                 info@example.com
               </p>
             </div>
-            <div className="col-lg-4 col-md-6">
+
+            <div className="col-lg-4 col-md-6"
+                style={{ backgroundColor: "#fafafa", color: "black" }} 
+            >
               <h4 className="text-light mb-4">Đường dẫn</h4>
               <a className="btn btn-link" href="/about">
                 Về chúng tôi
@@ -83,10 +89,12 @@ export default function Footer() {
         </div>
       </div>
       {/* Footer End */}
+
       {/* Back to Top */}
       <a
         href="#"
-        className="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"
+        className="btn btn-lg btn-lg-square rounded-circle back-to-top"
+        style={{ backgroundColor: "#ed6f67"}} 
       >
         <i className="bi bi-arrow-up" />
       </a>
