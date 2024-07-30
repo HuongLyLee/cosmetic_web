@@ -178,13 +178,15 @@ export default function Product() {
         </div>
       </div>
       {/* Page Header End */}
-      
+
       {/* Product Start */}
-      <div className="container-xxl py-5">
+      <div className="container-xxl py-4">
         <div className="container">
           <div className="row g-5">
             {/* Left Sidebar Start */}
             <div className="col-lg-3">
+
+              {/* Tìm kiếm */}
               <div className="mb-5">
                 <Typography gutterBottom>Tìm kiếm</Typography>
                 <div style={{ position: "relative" }}>
@@ -275,6 +277,7 @@ export default function Product() {
                 </div>
               </div>
 
+              {/* Lọc theo giá */}
               <div className="mb-5">
                 <Typography gutterBottom>Lọc theo giá</Typography>
                 <PrettoSlider
@@ -332,10 +335,12 @@ export default function Product() {
                 />
               </div>
 
+              {/* Danh mục */}
               <div className="mb-5">
                 <Typography gutterBottom>Danh mục</Typography>
-                <ul className="nav nav-pills flex-column">
+                <ul className="nav flex-column" style={{ backgroundColor: "#f7d1b2" }}>
                   {listCategory?.map((item, index) => {
+                    const isActive = activeCategory === item?._id;
                     return (
                       <li
                         className="nav-item"
@@ -343,7 +348,11 @@ export default function Product() {
                         onClick={() => { setActiveCategory(item?._id); }}
                       >
                         <a
-                          className={`nav-link ${activeCategory === item?._id ? "active" : ""}`}
+                          className={`nav-link`}
+                          style={{
+                            color: isActive ? "#ff6666" : "#000",
+                            fontWeight: isActive ? "bold" : "normal",
+                          }}
                           data-bs-toggle="pill"
                         >
                           {item?.category_name}
@@ -353,9 +362,10 @@ export default function Product() {
                   })}
                 </ul>
               </div>
+
             </div>
             {/* Left Sidebar End */}
-            
+
             {/* Product List Start */}
             <div className="col-lg-9">
               <div className="tab-content">
@@ -387,7 +397,8 @@ export default function Product() {
                       data-wow-delay="0.1s"
                     >
                       <a
-                        className="btn btn-primary rounded-pill py-3 px-5"
+                        className="btn rounded-pill py-3 px-5"
+                        style={{ backgroundColor: "#f7d1b2", }}
                         href="/product"
                       >
                         Xem thêm
@@ -423,6 +434,7 @@ export default function Product() {
               </div>
             </div>
             {/* Product List End */}
+
           </div>
         </div>
       </div>
