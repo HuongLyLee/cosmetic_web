@@ -182,286 +182,254 @@ export default function Product() {
       {/* Product Start */}
       <div className="container-xxl py-5">
         <div className="container">
-          <div className="row g-0 gx-5 align-items-end">
-            <div className="col-lg-6">
-              <div
-                className="section-header text-start mb-5 wow fadeInUp"
-                data-wow-delay="0.1s"
-                style={{ maxWidth: "500px" }}
-              >
-                <h1 className="display-5 mb-3">Sản phẩm</h1>
-                <p>
-                  Luôn cam kết mang đến những sản phẩm tốt và chất lượng nhất
-                  đến với bạn
-                </p>
-              </div>
-            </div>
-
-            <div
-              className="col-lg-6 text-start text-lg-end wow slideInRight"
-              data-wow-delay="0.1s"
-            >
-              <ul className="nav nav-pills d-inline-flex justify-content-end mb-5">
-                {listCategory?.map((item, index) => {
-                  return (
-                    <li
-                      className="nav-item me-2"
-                      key={`home-category-item-${index}`}
-                      onClick={() => {setActiveCategory(item?._id);}}
-                      style={{ marginTop: "20px" }}
-                    >
-                      <a
-                        className={`btn btn-outline-dark rounded border-2 ${activeCategory === item?._id ? "active" : ""}`}
-                        data-bs-toggle="pill"
-                      >
-                        {item?.category_name}
-                      </a>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          </div>
-
-          <div className="row g-0 gx-5 align-items-start mb-5">
-            <div className={`col-lg-5`} style={{ marginTop: "20px" }}>
-              <Typography gutterBottom>Tìm kiếm</Typography>
-              <div style={{ position: "relative" }}>
-                <SearchBar
-                  handleClick={() => {
-                    if (!isComponentVisible && searchText.current?.length) {
-                      setIsComponentVisible(true);
-                    }
-                  }}
-                  customStyle={{ width: "70%" }}
-                  handleChange={(value) => {
-                    searchText.current = value;
-                    debounceFn(value);
-                  }}
-                  ref={searchInputRef}
-                  handleSubmit={() => {
-                    getProductData(
-                      activeCategory,
-                      currentPage,
-                      searchText.current,
-                      priceSlider?.[0],
-                      priceSlider?.[1]
-                    );
-                  }}
-                />
-                {(isComponentVisible && (
-                  <ul
-                    ref={ref}
-                    style={{
-                      maxHeight: "300px",
-                      overflow: "auto",
-                      background: "white",
-                      position: "absolute",
-                      width: "calc(70% + 40px)",
-                      zIndex: 50,
-                      padding: "10px",
-                      marginTop: "-50px",
-                      borderBottom: "1px solid #3CB914",
-                      borderLeft: "1px solid #3CB914",
-                      borderRight: "1px solid #3CB914",
-                      listStyleType: "none",
+          <div className="row g-5">
+            {/* Left Sidebar Start */}
+            <div className="col-lg-3">
+              <div className="mb-5">
+                <Typography gutterBottom>Tìm kiếm</Typography>
+                <div style={{ position: "relative" }}>
+                  <SearchBar
+                    handleClick={() => {
+                      if (!isComponentVisible && searchText.current?.length) {
+                        setIsComponentVisible(true);
+                      }
                     }}
-                  >
-                    {searchList?.length ? (
-                      searchList?.map((item, index) => {
-                        return (
-                          <>
-                            <li
-                              key={`search-list-item-${index}`}
-                              style={{ cursor: "pointer" }}
-                              onClick={() => {
-                                navigate(`/product/${item?._id}`);
-                              }}
-                            >
-                              <div
-                                style={{
-                                  display: "flex",
-                                  justifyContent: "flex-start",
-                                  alignItems: "center",
-                                }}
-                              >
-                                <div>
-                                  <img
-                                    src={item?.product_image}
-                                    width={50}
-                                    height={50}
-                                    placeholder="blur"
-                                    alt=""
-                                  />
-                                </div>
-                                <div style={{ marginLeft: "20px" }}>
-                                  {item?.product_name}
-                                </div>
-                              </div>
-                            </li>
-                            {index < searchList?.length - 1 && (
-                              <Divider sx={{ my: "10px" }} />
-                            )}
-                          </>
-                        );
-                      })
-                    ) : (
-                      <li>Không có sản phẩm trùng khớp</li>
-                    )}
-                  </ul>
-                )) ||
-                  ""}
-              </div>
-            </div>
-
-            <div className={`col-lg-2`} />
-            <div className="col-lg-5" style={{ marginTop: "20px" }}>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "flex-start",
-                  alignItems: "center",
-                  width: "100%",
-                }}
-              >
-                <div style={{ width: "calc(100% - 90px)" }}>
-                  <Typography gutterBottom>Lọc theo giá</Typography>
-                  <PrettoSlider
-                    valueLabelDisplay="auto"
-                    aria-label="pretto slider"
-                    value={priceSlider}
-                    min={MIN_PRICE}
-                    max={MAX_PRICE}
-                    step={1000}
-                    onChange={(event, newValue) => {
-                      setPriceSlider(newValue);
+                    customStyle={{ width: "100%" }}
+                    handleChange={(value) => {
+                      searchText.current = value;
+                      debounceFn(value);
                     }}
-                    style={{ color: '#ed6f67' }}
-                  />
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                    }}
-                  >
-                    <div
-                      className="px-3 py-1"
-                      style={{
-                        border: "1px solid #ed6f67",
-                        maxWidth: "150px",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                      }}
-                    >
-                      {FORMAT_NUMBER.format(priceSlider[0])}
-                    </div>
-                    <div
-                      className="px-3 py-1"
-                      style={{
-                        border: "1px solid #ed6f67",
-                        maxWidth: "150px",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                      }}
-                    >
-                      {FORMAT_NUMBER.format(priceSlider[1])}
-                    </div>
-                  </div>
-                </div>
-
-                <div
-                  style={{
-                    width: "60px",
-                    marginLeft: "30px",
-                    marginTop: "-15px",
-                  }}
-                >
-                  <FilterAltIcon
-                    sx={{ cursor: "pointer", color: "#ed6f67" }}
-                    onClick={() =>
+                    ref={searchInputRef}
+                    handleSubmit={() => {
                       getProductData(
                         activeCategory,
                         currentPage,
                         searchText.current,
                         priceSlider?.[0],
                         priceSlider?.[1]
-                      )
-                    }
+                      );
+                    }}
                   />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="tab-content">
-            {listProduct?.length ? (
-              <div className="row g-4">
-                {listProduct?.map((item, index) => {
-                  return (
-                    <div
-                      className="col-xl-3 col-lg-4 col-md-6 wow"
-                      data-wow-delay="0.1s"
-                      key={`product-item-${index}`}
+                  {(isComponentVisible && (
+                    <ul
+                      ref={ref}
+                      style={{
+                        maxHeight: "300px",
+                        overflow: "auto",
+                        background: "white",
+                        position: "absolute",
+                        width: "100%",
+                        zIndex: 50,
+                        padding: "10px",
+                        marginTop: "10px",
+                        borderBottom: "1px solid #3CB914",
+                        borderLeft: "1px solid #3CB914",
+                        borderRight: "1px solid #3CB914",
+                        listStyleType: "none",
+                      }}
                     >
-                      <ProductItem
-                        id={item?._id}
-                        image={item?.product_image}
-                        isNew={true}
-                        name={item?.product_name}
-                        price={item?.product_price}
-                        salePrice={item?.sale_price}
-                        currentQuantity={item?.current_quantity}
-                        start_new={item?.start_new}
-                        end_new={item?.end_new}
-                      />
-                    </div>
-                  );
-                })}
-                <div
-                  className="col-12 text-center wow fadeInUp"
-                  data-wow-delay="0.1s"
-                >
-                  <a
-                    className="btn btn-primary rounded-pill py-3 px-5"
-                    href="/product"
-                  >
-                    Xem thêm
-                  </a>
+                      {searchList?.length ? (
+                        searchList?.map((item, index) => {
+                          return (
+                            <>
+                              <li
+                                key={`search-list-item-${index}`}
+                                style={{ cursor: "pointer" }}
+                                onClick={() => {
+                                  navigate(`/product/${item?._id}`);
+                                }}
+                              >
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    justifyContent: "flex-start",
+                                    alignItems: "center",
+                                  }}
+                                >
+                                  <div>
+                                    <img
+                                      src={item?.product_image}
+                                      width={50}
+                                      height={50}
+                                      placeholder="blur"
+                                      alt=""
+                                    />
+                                  </div>
+                                  <div style={{ marginLeft: "20px" }}>
+                                    {item?.product_name}
+                                  </div>
+                                </div>
+                              </li>
+                              {index < searchList?.length - 1 && (
+                                <Divider sx={{ my: "10px" }} />
+                              )}
+                            </>
+                          );
+                        })
+                      ) : (
+                        <li>Không có sản phẩm trùng khớp</li>
+                      )}
+                    </ul>
+                  )) ||
+                    ""}
                 </div>
               </div>
-            ) : (
-              <div style={{ textAlign: "center" }}>
-                Không có sản phẩm phù hợp
-              </div>
-            )}
-            {currentPage + 1 < totalPage ? (
-              <div class="col-12 text-center mt-5">
-                <a
-                  class="btn rounded-pill py-3 px-5"
-                  style={{ backgroundColor: "#bd876a" }}
+
+              <div className="mb-5">
+                <Typography gutterBottom>Lọc theo giá</Typography>
+                <PrettoSlider
+                  valueLabelDisplay="auto"
+                  aria-label="pretto slider"
+                  value={priceSlider}
+                  min={MIN_PRICE}
+                  max={MAX_PRICE}
+                  step={1000}
+                  onChange={(event, newValue) => {
+                    setPriceSlider(newValue);
+                  }}
+                />
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <div
+                    className="px-3 py-1"
+                    style={{
+                      border: "1px solid #ed6f67",
+                      maxWidth: "150px",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    {FORMAT_NUMBER.format(priceSlider[0])}
+                  </div>
+                  <div
+                    className="px-3 py-1"
+                    style={{
+                      border: "1px solid #ed6f67",
+                      maxWidth: "150px",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    {FORMAT_NUMBER.format(priceSlider[1])}
+                  </div>
+                </div>
+                <FilterAltIcon
+                  sx={{ cursor: "pointer", color: "#ed6f67" }}
                   onClick={() =>
                     getProductData(
                       activeCategory,
-                      currentPage + 1,
+                      currentPage,
                       searchText.current,
-                      priceSlider[0],
-                      priceSlider[1]
+                      priceSlider?.[0],
+                      priceSlider?.[1]
                     )
                   }
-                >
-                  Xem thêm
-                </a>
+                />
               </div>
-            ) : (
-              <></>
-            )}
+
+              <div className="mb-5">
+                <Typography gutterBottom>Danh mục</Typography>
+                <ul className="nav nav-pills flex-column">
+                  {listCategory?.map((item, index) => {
+                    return (
+                      <li
+                        className="nav-item"
+                        key={`home-category-item-${index}`}
+                        onClick={() => { setActiveCategory(item?._id); }}
+                      >
+                        <a
+                          className={`nav-link ${activeCategory === item?._id ? "active" : ""}`}
+                          data-bs-toggle="pill"
+                        >
+                          {item?.category_name}
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            </div>
+            {/* Left Sidebar End */}
+            
+            {/* Product List Start */}
+            <div className="col-lg-9">
+              <div className="tab-content">
+                {listProduct?.length ? (
+                  <div className="row g-4">
+                    {listProduct?.map((item, index) => {
+                      return (
+                        <div
+                          className="col-xl-3 col-lg-4 col-md-6 wow"
+                          data-wow-delay="0.1s"
+                          key={`product-item-${index}`}
+                        >
+                          <ProductItem
+                            id={item?._id}
+                            image={item?.product_image}
+                            isNew={true}
+                            name={item?.product_name}
+                            price={item?.product_price}
+                            salePrice={item?.sale_price}
+                            currentQuantity={item?.current_quantity}
+                            start_new={item?.start_new}
+                            end_new={item?.end_new}
+                          />
+                        </div>
+                      );
+                    })}
+                    <div
+                      className="col-12 text-center wow fadeInUp"
+                      data-wow-delay="0.1s"
+                    >
+                      <a
+                        className="btn btn-primary rounded-pill py-3 px-5"
+                        href="/product"
+                      >
+                        Xem thêm
+                      </a>
+                    </div>
+                  </div>
+                ) : (
+                  <div style={{ textAlign: "center" }}>
+                    Không có sản phẩm phù hợp
+                  </div>
+                )}
+                {currentPage + 1 < totalPage ? (
+                  <div className="col-12 text-center mt-5">
+                    <a
+                      className="btn rounded-pill py-3 px-5"
+                      style={{ backgroundColor: "#bd876a" }}
+                      onClick={() =>
+                        getProductData(
+                          activeCategory,
+                          currentPage + 1,
+                          searchText.current,
+                          priceSlider[0],
+                          priceSlider[1]
+                        )
+                      }
+                    >
+                      Xem thêm
+                    </a>
+                  </div>
+                ) : (
+                  <></>
+                )}
+              </div>
+            </div>
+            {/* Product List End */}
           </div>
         </div>
       </div>
       {/* Product End */}
     </div>
   );
+
 }
 
 function useComponentVisible(initialIsVisible) {
