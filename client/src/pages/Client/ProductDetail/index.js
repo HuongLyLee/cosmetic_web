@@ -55,7 +55,7 @@ export default function ProductDetail() {
                 <div className="product-info">
                   <div
                     className="product-name"
-                    style={{ fontSize: "35px", lineHeight: "50px" }}
+                    style={{ fontSize: "35px", lineHeight: "50px", color: "#231942" }}
                   >
                     {productDetail?.product_name}
                   </div>
@@ -101,7 +101,7 @@ export default function ProductDetail() {
                   )}
                 </div>
                 <div>
-                  <span style={{ fontWeight: 700, color: "#3CB914" }}>
+                  <span style={{ fontWeight: 700, color: "#000" }}>
                     Số lượng:
                   </span>{" "}
                   <span style={{ fontWeight: 700 }}>
@@ -109,12 +109,12 @@ export default function ProductDetail() {
                   </span>
                 </div>
 
-                <div className="product-count">
+                <div className="product-count" >
                   <label htmlFor="size">Số lượng</label>
-                  <form className="display-flex">
+                  <form className="display-flex" >
                     <div
                       className="qtyminus"
-                      style={{ background: "#3CB914" }}
+                      style={{ background: "#ff6666" }}
                       onClick={() => {
                         if (productQuantity - 1 >= 0) {
                           setProductQuantity(productQuantity - 1);
@@ -128,14 +128,14 @@ export default function ProductDetail() {
                       name="quantity"
                       value={productQuantity}
                       className="qty"
-                      style={{ border: "1px solid #3CB914" }}
+                      style={{ border: "1px solid #808080" }}
                       onChange={(event) => {
                         setProductQuantity(event.target.value);
                       }}
                     />
                     <div
                       className="qtyplus"
-                      style={{ background: "#3CB914" }}
+                      style={{ background: "#ff6666" }}
                       onClick={() => {
                         setProductQuantity(productQuantity + 1);
                       }}
@@ -146,8 +146,8 @@ export default function ProductDetail() {
                   <a
                     className="round-black-btn"
                     style={{
-                      background: "#3CB914",
-                      borderColor: "#3CB914",
+                      background: "#ff6666",
+                      borderColor: "#ff6666",
                       cursor: "pointer",
                     }}
                     onClick={() => {
@@ -190,7 +190,8 @@ export default function ProductDetail() {
                   className="nav-link"
                   style={{
                     cursor: "pointer",
-                    color: currentTab === 1 ? "#3CB914" : "",
+                    fontSize: "20px",
+                    color: currentTab === 1 ? "#231942" : "#d3d3d3",
                   }}
                 >
                   Mô tả
@@ -201,7 +202,8 @@ export default function ProductDetail() {
                   className="nav-link"
                   style={{
                     cursor: "pointer",
-                    color: currentTab === 2 ? "#3CB914" : "",
+                    fontSize: "20px",
+                    color: currentTab === 2 ? "#231942" : "#d3d3d3",
                   }}
                 >
                   Đánh giá
