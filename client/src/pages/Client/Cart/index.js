@@ -31,7 +31,8 @@ import { userAPI } from "../../../services/userAPI";
 
 const PAYMENT_METHOD = [
   { label: "Ship COD ", value: "COD" },
-  { label: "Payment Zalo", value: "VISA" },
+  { label: "Stripe", value: "VISA" },
+  { label: "Payment Zalo", value: "ZaloPay" },
 ];
 
 const PICKUP_METHOD = [
@@ -367,6 +368,37 @@ const PaymentDialog = (props) => {
   const stripe = useStripe();
   const elements = useElements();
 
+  const handleZaloPayCheckout = async () => {
+    try {
+      const totalPrice = calculateTotalPrice(cartProduct);
+      const response = await fetch("http://localhost:5005/api/payment/zaloPayment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          amount: totalPrice,
+          userInfo: {
+            email: userInfo.email,
+            phone: userInfo.phone_number,
+            name: `${userInfo.first_name} ${userInfo.last_name}`,
+          },
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.order_url) {
+        // Navigate to the ZaloPay payment URL
+        window.location.href = data.order_url;
+      } else {
+        toast.error("Đã xảy ra lỗi trong quá trình thanh toán bằng ZaloPay.");
+      }
+    } catch (error) {
+      toast.error("Đã xảy ra lỗi trong quá trình thanh toán.");
+    }
+  };
+
   return (
     <CustomDialog
       onClose={() => onClose()}
@@ -400,10 +432,16 @@ const PaymentDialog = (props) => {
           return '';
         }
 
+         // Xử lý thanh toán ZaloPay
+         if (paymentOption === "ZaloPay") {
+          return handleZaloPayCheckout();
+        }
+
+        // Xử lý thanh toán Stripe
         if (paymentOption === "VISA") {
           if (!stripe || !elements) {
             return toast.error("Cần nhập đầy đủ thông tin thanh toán");
-          }
+          }s
 
           const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: "card",
@@ -504,104 +542,7 @@ const PaymentDialog = (props) => {
           })
         }
       />
-      {/* <hr /> */}
 
-      {/* <h5 style={{ textAlign: "center", marginTop: "20px" }}>
-        Phương thức lấy hàng
-      </h5> */}
-
-      {/* <div style={{ marginTop: "10px" }}>
-        {PICKUP_METHOD?.map((item, index) => (
-          <label
-            key={`pickup-item-${index}`}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              cursor: "pointer",
-              borderRadius: "8px",
-              padding: "10px 20px",
-              backgroundColor: pickUpOption === item?.value ? "rgb(60,185,20)" : "white",
-              width: "30%",
-              textAlign: "center",
-              transition: "all 0.3s ease",
-            }}
-          >
-            <input
-              type="radio"
-              name="pickup-option"
-              value={item?.value}
-              checked={pickUpOption === item?.value}
-              onChange={() => {
-                setPickUpOption(item?.value);
-                changePickUpOption(item?.value);
-              }}
-            />
-            <span style={{ marginLeft: "10px", color: pickUpOption === item?.value ? "white" : "black" }}>
-              {item?.label}
-            </span>
-          </label>
-        ))}
-      </div> */}
-
-      {/* {pickUpOption === "PICKUP" ? (
-        <div
-          style={{ marginLeft: "30px", marginRight: "30px", marginTop: "20px" }}
-        >
-          <label>Thời gian dự kiến đến lấy</label>
-          <br />
-          <input
-            style={{
-              width: "100%",
-              marginTop: "10px",
-              border: "1px solid #e2e2e1",
-              padding: "10px 20px",
-            }}
-            type={"date"}
-            value={pickUpTime}
-            onChange={(event) => {
-              setPickUpTime(event?.target?.value)
-              changePickUpTime(event?.target?.value)
-            }}
-          />
-        </div>
-      ) : (
-        <></>
-      )} */}
-
-      <hr />
-      {/* <h5 style={{ textAlign: "center", marginTop: "20px" }}>
-        Phương thức thanh toán
-      </h5>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          alignItems: "center",
-          marginTop: "20px",
-        }}
-      >
-        {PAYMENT_METHOD?.map((item, index) => {
-          return (
-            <div
-              key={`payment-item-${index}`}
-              onClick={() => {
-                setPaymentOption(item?.value);
-                changePaymentOption(item?.value);
-              }}
-              style={{
-                padding: "30px",
-                border: "1px solid rgb(60,185,20)",
-                background:
-                  paymentOption === item?.value ? "rgb(60,185,20)" : "white",
-                width: "40%",
-                cursor: "pointer",
-              }}
-            >
-              {item?.label}
-            </div>
-          );
-        })}
-      </div> */}
 
       <div style={{ marginTop: "20px" }}>
         <h5 style={{ marginTop: "20px" }}>
@@ -644,7 +585,7 @@ const PaymentDialog = (props) => {
         </div>
       </div>
 
-{/* 
+
       {paymentOption === "VISA" ? (
         <Box
           sx={{ marginTop: "30px", marginLeft: "30px", marginRight: "30px" }}
@@ -653,7 +594,7 @@ const PaymentDialog = (props) => {
         </Box>
       ) : (
         <></>
-      )} */}
+      )}
 
       <hr />
       
