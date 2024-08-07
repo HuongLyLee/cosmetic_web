@@ -30,8 +30,8 @@ import { useNavigate } from "react-router-dom";
 import { userAPI } from "../../../services/userAPI";
 
 const PAYMENT_METHOD = [
-  { label: "Thanh toán khi nhận hàng", value: "COD" },
-  { label: "Thanh toán qua thẻ", value: "VISA" },
+  { label: "Ship COD ", value: "COD" },
+  { label: "Payment Zalo", value: "VISA" },
 ];
 
 const PICKUP_METHOD = [
@@ -160,16 +160,15 @@ export default function CartPage() {
   };
 
   return (
-    <div className="container" style={{ marginTop: "200px" }}>
+    <div className="container" style={{ marginTop: "170px" }}>
       <table id="cart" className="table table-hover table-condensed">
-        <thead>
+        <thead style={{ fontSize: "20px", color: "black" }}>
           <tr>
-            <th style={{ width: "38%" }}>Sản phẩm</th>
-            <th style={{ width: "15%" }}>Đơn giá</th>
-            <th style={{ width: "15%" }}>Giá giảm</th>
-            <th style={{ width: "10%" }}>Số lượng</th>
-            <th style={{ width: "20%" }} className="text-center">Số tiền</th>
-            <th style={{ width: "2%" }} />
+            <th style={{ width: "40%" }}>Tên sản phẩm</th>
+            <th style={{ width: "18%" }}></th>
+            <th style={{ width: "10%" }}>Đơn giá</th>
+            <th style={{ width: "15%" }} className="text-center">Số tiền</th>
+            <th style={{ width: "5%" }} />
           </tr>
         </thead>
 
@@ -204,21 +203,10 @@ export default function CartPage() {
                   </div>
                 </td>
 
-                <td data-th="Price">
-                  {FORMAT_NUMBER.format(Number(cartItem.product_price))} đ
-                </td>
-
-                <td data-th="Price">
-                  {cartItem.product_sale > 0 &&
-                    cartItem.product_sale !== cartItem.product_price
-                    ? FORMAT_NUMBER.format(Number(cartItem.product_sale)) + "đ"
-                    : ""}
-                </td>
-
-                <td data-th="Quantity">
-                  <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", }} >
+                <td data-th="Quantity" >
+                  <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", border: "1px solid #e0e0e0", width: "fit-content", }} >
                     <div
-                      style={{ padding: "2px", cursor: "pointer", border: "1px solid #e0e0e0" }}
+                      style={{ padding: "2px", cursor: "pointer", }}
                       onClick={() => {
                         if (cartItem?.quantity - 1 > 0) {
                           changeProductQuantity(
@@ -235,13 +223,13 @@ export default function CartPage() {
                     <div
                       style={{
                         paddingTop: "2px", paddingBottom: "2px",
-                        textAlign: "center", width: "50px", border: "1px solid #e0e0e0"
+                        textAlign: "center", width: "50px",
                       }}
                     >
                       {cartItem?.quantity || 0}
                     </div>
 
-                    <div style={{ padding: "2px", cursor: "pointer", border: "1px solid #e0e0e0" }}
+                    <div style={{ padding: "2px", cursor: "pointer", }}
                       onClick={() => {
                         changeProductQuantity(
                           Number(cartItem?.quantity) + 1,
@@ -252,6 +240,18 @@ export default function CartPage() {
                       <AddIcon fontSize="small" sx={{ color: "black" }} />
                     </div>
                   </div>
+                </td>
+
+                <td data-th="Price">
+                  <span style={{ color: 'black' }}>
+                    {cartItem.product_sale > 0 && cartItem.product_sale !== cartItem.product_price
+                      ? FORMAT_NUMBER.format(Number(cartItem.product_sale)) + " đ"
+                      : ""}
+                  </span>
+                  <br />
+                  <span class="text-decoration-line-through">
+                    {FORMAT_NUMBER.format(Number(cartItem.product_price))} đ
+                  </span>
                 </td>
 
                 <td data-th="Subtotal" className="text-center">
@@ -289,52 +289,46 @@ export default function CartPage() {
         </tbody>
 
         <tfoot>
-          <tr className="visible-xs">
-            <td className="text-center">
-              <strong>
-                Tổng thanh toán: {FORMAT_NUMBER.format(calculateTotalPrice(cartProduct))} đ
-              </strong>
-            </td>
-          </tr>
           <tr>
             <td>
-              <a href="/" className="btn btn-warning">
+              <a href="/" className="btn btn-warning ">
                 <i className="fa fa-angle-left" /> Tiếp tục mua sắm
               </a>
             </td>
             <td colSpan={2} className="hidden-xs" />
-            <td className="hidden-xs text-center">
+
+            <td className="hidden-xs ">
               <strong style={{ whiteSpace: "nowrap" }}>
                 Tổng: {FORMAT_NUMBER.format(calculateTotalPrice(cartProduct))} đ
               </strong>
             </td>
-            <td colSpan={1} className="hidden-xs" />
-            <td style={{ textAlign: "right" }}>
-              <a
-                className="btn btn-success btn-block"
-                style={{
-                  display: "flex",
-                  justifyContent: "flex-start",
-                  alignItems: "center",
-                  whiteSpace: "nowrap",
-                  width: "fit-content",
-                }}
-                onClick={() => {
-                  if (!cartProduct?.length) {
-                    return toast.error("Không có sản phẩm trong giỏ hàng");
-                  }
-                  setVisibleCheckoutModal(true);
-                }}
-              >
-                <span>Thanh toán </span>
-                <span style={{ marginLeft: "20px" }}>
-                  <i className="fa fa-angle-right" />
-                </span>
-              </a>
-            </td>
           </tr>
         </tfoot>
       </table>
+
+      <div style={{ textAlign: "right" }}>
+        <a
+          className="btn btn-block"
+          style={{
+            backgroundColor: "black",
+            color: "white",
+            width: "fit-content",
+            padding: "10px 20px",
+            display: "inline-flex",
+          }}
+          onClick={() => {
+            if (!cartProduct?.length) {
+              return toast.error("Không có sản phẩm trong giỏ hàng");
+            }
+            setVisibleCheckoutModal(true);
+          }}
+        >
+          <span>THANH TOÁN</span>
+          <span style={{ marginLeft: "10px" }}>
+            <i className="fa fa-angle-right" />
+          </span>
+        </a>
+      </div>
 
       {visibleCheckoutModal && (
         <Elements stripe={stripeKey}>
@@ -433,7 +427,7 @@ const PaymentDialog = (props) => {
       maxWidth="700px"
       width="700px"
     >
-      <h5 style={{ textAlign: "center" }}>Thông tin khách hàng</h5>
+      <h5>Thông tin người nhận hàng</h5>
       <div
         style={{
           display: "flex",
@@ -472,6 +466,7 @@ const PaymentDialog = (props) => {
           />
         </div>
       </div>
+      
       <CustomInput
         label="Số điện thoại"
         id="post-title"
@@ -509,43 +504,46 @@ const PaymentDialog = (props) => {
           })
         }
       />
-      <hr />
-      <h5 style={{ textAlign: "center", marginTop: "20px" }}>
-        Phương thức lấy hàng
-      </h5>
+      {/* <hr /> */}
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          alignItems: "center",
-          marginTop: "20px",
-        }}
-      >
-        {PICKUP_METHOD?.map((item, index) => {
-          return (
-            <div
-              key={`pickup-item-${index}`}
-              onClick={() => {
+      {/* <h5 style={{ textAlign: "center", marginTop: "20px" }}>
+        Phương thức lấy hàng
+      </h5> */}
+
+      {/* <div style={{ marginTop: "10px" }}>
+        {PICKUP_METHOD?.map((item, index) => (
+          <label
+            key={`pickup-item-${index}`}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              cursor: "pointer",
+              borderRadius: "8px",
+              padding: "10px 20px",
+              backgroundColor: pickUpOption === item?.value ? "rgb(60,185,20)" : "white",
+              width: "30%",
+              textAlign: "center",
+              transition: "all 0.3s ease",
+            }}
+          >
+            <input
+              type="radio"
+              name="pickup-option"
+              value={item?.value}
+              checked={pickUpOption === item?.value}
+              onChange={() => {
                 setPickUpOption(item?.value);
                 changePickUpOption(item?.value);
               }}
-              style={{
-                padding: "30px",
-                border: "1px solid rgb(60,185,20)",
-                background:
-                  pickUpOption === item?.value ? "rgb(60,185,20)" : "white",
-                width: "40%",
-                cursor: "pointer",
-              }}
-            >
+            />
+            <span style={{ marginLeft: "10px", color: pickUpOption === item?.value ? "white" : "black" }}>
               {item?.label}
-            </div>
-          );
-        })}
-      </div>
+            </span>
+          </label>
+        ))}
+      </div> */}
 
-      {pickUpOption === "PICKUP" ? (
+      {/* {pickUpOption === "PICKUP" ? (
         <div
           style={{ marginLeft: "30px", marginRight: "30px", marginTop: "20px" }}
         >
@@ -568,10 +566,10 @@ const PaymentDialog = (props) => {
         </div>
       ) : (
         <></>
-      )}
+      )} */}
 
       <hr />
-      <h5 style={{ textAlign: "center", marginTop: "20px" }}>
+      {/* <h5 style={{ textAlign: "center", marginTop: "20px" }}>
         Phương thức thanh toán
       </h5>
       <div
@@ -603,7 +601,50 @@ const PaymentDialog = (props) => {
             </div>
           );
         })}
+      </div> */}
+
+      <div style={{ marginTop: "20px" }}>
+        <h5 style={{ marginTop: "20px" }}>
+          Phương thức thanh toán
+        </h5>
+        <div style={{ marginTop: "20px" }}>
+          {PAYMENT_METHOD?.map((item, index) => (
+            <label
+              key={`payment-item-${index}`}
+              style={{
+                display: "block", 
+                padding: "15px 20px",
+                border: "1px solid #000",
+                background: paymentOption === item?.value ? "grey" : "white",
+                width: "50%", 
+                cursor: "pointer",
+                borderRadius: "8px", 
+                textAlign: "center", 
+                marginBottom: "10px", 
+                transition: "all 0.3s ease", 
+                boxShadow: paymentOption === item?.value ? "0 4px 8px rgba(0,0,0,0.2)" : "none", 
+              }}
+            >
+              <input
+                type="radio"
+                name="payment-option"
+                value={item?.value}
+                checked={paymentOption === item?.value}
+                onChange={() => {
+                  setPaymentOption(item?.value);
+                  changePaymentOption(item?.value);
+                }}
+                style={{ display: "none" }}
+              />
+              <span style={{ color: paymentOption === item?.value ? "white" : "black" }}>
+                {item?.label}
+              </span>
+            </label>
+          ))}
+        </div>
       </div>
+
+{/* 
       {paymentOption === "VISA" ? (
         <Box
           sx={{ marginTop: "30px", marginLeft: "30px", marginRight: "30px" }}
@@ -612,10 +653,12 @@ const PaymentDialog = (props) => {
         </Box>
       ) : (
         <></>
-      )}
+      )} */}
+
       <hr />
-      <h6 style={{ color: "red", textAlign: "right" }}>
-        Số tiền thanh toán:{" "}
+      
+      <h6 style={{ color: "", textAlign: "right" }}>
+        Tổng tiền thanh toán:{" "}
         {FORMAT_NUMBER.format(calculateTotalPrice(cartProduct))}đ
       </h6>
     </CustomDialog>
