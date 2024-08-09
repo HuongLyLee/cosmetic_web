@@ -28,6 +28,8 @@ import {
 import { Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { userAPI } from "../../../services/userAPI";
+import "./index.css"
+
 
 const PAYMENT_METHOD = [
   { label: "Ship COD ", value: "COD" },
@@ -56,17 +58,21 @@ const stripeKey = loadStripe(STRIPE_KEY);
 
 const calculateTotalPrice = (lstProduct) => {
   const total = lstProduct?.reduce((previous, next) => {
-    if (
-      Number(next.product_sale) > 0 &&
-      Number(next.product_sale) !== Number(next.product_price)
-    ) {
-      return previous + Number(next.quantity) * Number(next.product_sale);
-    } else {
-      return previous + Number(next.quantity) * Number(next.product_price);
+    if (next.selected) {
+      if (
+        Number(next.product_sale) > 0 &&
+        Number(next.product_sale) !== Number(next.product_price)
+      ) {
+        return previous + Number(next.quantity) * Number(next.product_sale);
+      } else {
+        return previous + Number(next.quantity) * Number(next.product_price);
+      }
     }
+    return previous;
   }, 0);
   return total || 0;
 };
+
 
 export default function CartPage() {
   const [cartProduct, setCartProduct] = useState([]);
@@ -116,8 +122,11 @@ export default function CartPage() {
   const handleCheckout = async (paymentId) => {
     const totalPrice = calculateTotalPrice(cartProduct);
 
+    // Lọc các sản phẩm đã chọn
+    const selectedProducts = cartProduct.filter(product => product.selected);
+
     const checkoutResponse = await productAPI.checkoutCart(
-      cartProduct,
+      selectedProducts,
       paymentOption,
       totalPrice,
       userInfo,
@@ -137,6 +146,7 @@ export default function CartPage() {
       toast.error(checkoutResponse?.message);
     }
   };
+
 
   const changeProductQuantity = async (qlt, productId, type = "add") => {
     if (type !== "remove") {
@@ -165,11 +175,29 @@ export default function CartPage() {
       <table id="cart" className="table table-hover table-condensed">
         <thead style={{ fontSize: "20px", color: "black" }}>
           <tr>
+            <th style={{ width: "5%" }}>
+              <input
+                type="checkbox"
+                checked={cartProduct.every(item => item.selected)}
+                onChange={() => {
+                  const newSelection = !cartProduct.every(item => item.selected);
+                  const updatedCart = cartProduct.map(item => ({
+                    ...item,
+                    selected: newSelection,
+                  }));
+                  setCartProduct(updatedCart);
+                  localStorage.setItem(
+                    USER_CART_INFO + `_${userData?._id || ""}`,
+                    JSON.stringify(updatedCart)
+                  );
+                }}
+              />
+            </th>
             <th style={{ width: "40%" }}>Tên sản phẩm</th>
-            <th style={{ width: "18%" }}></th>
-            <th style={{ width: "10%" }}>Đơn giá</th>
-            <th style={{ width: "15%" }} className="text-center">Số tiền</th>
-            <th style={{ width: "5%" }} />
+            <th style={{ width: "13%" }}>Số lượng</th>
+            <th style={{ width: "15%" }}>Đơn giá</th>
+            <th style={{ width: "15%" }}>Số tiền</th>
+            <th style={{ width: "5%" }}/>
           </tr>
         </thead>
 
@@ -177,6 +205,22 @@ export default function CartPage() {
           {cartProduct?.map((cartItem, cartIndex) => {
             return (
               <tr key={`cart-item-${cartIndex}`}>
+                <td data-th="Select"  style={{ textAlign: "center" }}>
+                  <input
+                    type="checkbox"
+                    checked={cartItem.selected || false}
+                    onChange={() => {
+                      const updatedCart = [...cartProduct];
+                      updatedCart[cartIndex].selected = !updatedCart[cartIndex].selected;
+                      setCartProduct(updatedCart);
+                      localStorage.setItem(
+                        USER_CART_INFO + `_${userData?._id || ""}`,
+                        JSON.stringify(updatedCart)
+                      );
+                    }}
+                  />
+                </td>
+
                 <td data-th="Product">
                   <div className="row">
                     <div className="col-sm-2 hidden-xs">
@@ -203,10 +247,10 @@ export default function CartPage() {
                     </div>
                   </div>
                 </td>
-
+              
                 <td data-th="Quantity" >
-                  <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", border: "1px solid #e0e0e0", width: "fit-content", }} >
-                    <div
+                  <div className="quantity-container" style={{ display: "flex", justifyContent: "center", alignItems: "center", border: "1px solid #e0e0e0", width: "fit-content", }} >
+                    <div className="quantity-button"
                       style={{ padding: "2px", cursor: "pointer", }}
                       onClick={() => {
                         if (cartItem?.quantity - 1 > 0) {
@@ -221,11 +265,8 @@ export default function CartPage() {
                       <RemoveIcon fontSize="small" sx={{ color: "black" }} />
                     </div>
 
-                    <div
-                      style={{
-                        paddingTop: "2px", paddingBottom: "2px",
-                        textAlign: "center", width: "50px",
-                      }}
+                    <div className="quantity-display"
+                      style={{ paddingTop: "2px", paddingBottom: "2px", textAlign: "center", width: "50px", }}
                     >
                       {cartItem?.quantity || 0}
                     </div>
@@ -243,16 +284,16 @@ export default function CartPage() {
                   </div>
                 </td>
 
-                <td data-th="Price">
+                <td data-th="Price" className="price-container">
                   <span style={{ color: 'black' }}>
                     {cartItem.product_sale > 0 && cartItem.product_sale !== cartItem.product_price
                       ? FORMAT_NUMBER.format(Number(cartItem.product_sale)) + " đ"
                       : ""}
                   </span>
-                  <br />
                   <span class="text-decoration-line-through">
                     {FORMAT_NUMBER.format(Number(cartItem.product_price))} đ
                   </span>
+                  <br/>
                 </td>
 
                 <td data-th="Subtotal" className="text-center">
@@ -291,14 +332,13 @@ export default function CartPage() {
 
         <tfoot>
           <tr>
-            <td>
-              <a href="/" className="btn btn-warning ">
+            <td colSpan={4}>
+              <a href="/" className="btn text-black continue-shopping-btn">
                 <i className="fa fa-angle-left" /> Tiếp tục mua sắm
               </a>
             </td>
-            <td colSpan={2} className="hidden-xs" />
 
-            <td className="hidden-xs ">
+            <td colSpan={2} className="hidden-xs ">
               <strong style={{ whiteSpace: "nowrap" }}>
                 Tổng: {FORMAT_NUMBER.format(calculateTotalPrice(cartProduct))} đ
               </strong>
@@ -432,8 +472,8 @@ const PaymentDialog = (props) => {
           return '';
         }
 
-         // Xử lý thanh toán ZaloPay
-         if (paymentOption === "ZaloPay") {
+        // Xử lý thanh toán ZaloPay
+        if (paymentOption === "ZaloPay") {
           return handleZaloPayCheckout();
         }
 
@@ -441,7 +481,7 @@ const PaymentDialog = (props) => {
         if (paymentOption === "VISA") {
           if (!stripe || !elements) {
             return toast.error("Cần nhập đầy đủ thông tin thanh toán");
-          }s
+          }
 
           const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: "card",
@@ -504,7 +544,7 @@ const PaymentDialog = (props) => {
           />
         </div>
       </div>
-      
+
       <CustomInput
         label="Số điện thoại"
         id="post-title"
@@ -553,17 +593,17 @@ const PaymentDialog = (props) => {
             <label
               key={`payment-item-${index}`}
               style={{
-                display: "block", 
+                display: "block",
                 padding: "15px 20px",
                 border: "1px solid #000",
                 background: paymentOption === item?.value ? "grey" : "white",
-                width: "50%", 
+                width: "50%",
                 cursor: "pointer",
-                borderRadius: "8px", 
-                textAlign: "center", 
-                marginBottom: "10px", 
-                transition: "all 0.3s ease", 
-                boxShadow: paymentOption === item?.value ? "0 4px 8px rgba(0,0,0,0.2)" : "none", 
+                borderRadius: "8px",
+                textAlign: "center",
+                marginBottom: "10px",
+                transition: "all 0.3s ease",
+                boxShadow: paymentOption === item?.value ? "0 4px 8px rgba(0,0,0,0.2)" : "none",
               }}
             >
               <input
@@ -597,7 +637,7 @@ const PaymentDialog = (props) => {
       )}
 
       <hr />
-      
+
       <h6 style={{ color: "", textAlign: "right" }}>
         Tổng tiền thanh toán:{" "}
         {FORMAT_NUMBER.format(calculateTotalPrice(cartProduct))}đ

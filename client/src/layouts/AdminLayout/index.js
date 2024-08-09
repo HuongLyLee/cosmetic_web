@@ -80,6 +80,7 @@ function Layout(props) {
           <Toolbar
             sx={{
               pr: "24px", // keep right padding when drawer closed
+              backgroundColor: 'black',
             }}
           >
             <IconButton
@@ -99,7 +100,7 @@ function Layout(props) {
               variant="h6"
               color="inherit"
               noWrap
-              sx={{ flexGrow: 1 }}
+              sx={{ flexGrow: 1,  }}
             >
               Trang quản trị
             </Typography>

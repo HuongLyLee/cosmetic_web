@@ -78,7 +78,7 @@ export default function BlogPage() {
             data-wow-delay="0.1s"
             style={{ maxWidth: "500px" }}
           >
-            <h1 className="display-5 mb-3">Bài Viết</h1>
+            <h1 className="display-5 mb-3">Tạp chí làm đẹp</h1>
             <p>
               Những bài viết mới mẻ sẽ đem lại những kiến thức thú vị
             </p>
@@ -110,7 +110,15 @@ export default function BlogPage() {
               {currentPage + 1 < totalPage ? (
                 <a
                   className="btn rounded-pill py-3 px-5 text-white"
-                  style={{ backgroundColor: "#bd876a" }}
+                  style={{ backgroundColor: "#d8856a" }}
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = "#c8745a"; 
+                    e.target.style.transform = "scale(1.05)"; 
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = "#d8856a"; 
+                    e.target.style.transform = "scale(1)"; 
+                  }}
                   href
                   onClick={() => getBlogList(currentPage + 1)}
                 >

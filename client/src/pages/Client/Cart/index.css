@@ -1,0 +1,83 @@
+/* Đảm bảo bảng có đầy đủ chiều rộng */
+  .table {
+    width: 100%;
+    border-collapse: collapse; /* Xóa khoảng cách giữa các ô */
+  }
+  
+  /* Cài đặt kích thước cho các cột */
+  .table th, .table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd; /* Đường viền cho các ô */
+  }
+  
+  .table th {
+    background-color: #f2f2f2;
+  }
+  
+  /* Cài đặt kích thước cho checkbox */
+  .table input[type="checkbox"] {
+    margin: 0;
+    cursor: pointer;
+  }
+  
+  /* Căn chỉnh ô tiêu đề */
+  .table thead th {
+    text-align: center;
+  }
+  
+  /* Căn chỉnh nội dung các ô */
+  .table tbody td {
+    vertical-align: middle;
+  }
+  
+  /* Căn chỉnh các ô hình ảnh và nội dung bên trong */
+  .table td img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Đảm bảo không có khoảng cách giữa các ô của bảng */
+  .table tr td {
+    padding: 7px;
+  }
+  
+  .quantity-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #e0e0e0;
+    width: fit-content;
+    margin: 0 auto; 
+  }
+
+  .price-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .continue-shopping-btn {
+    display: inline-flex;
+    align-items: center;
+    color: #ff5353; /* Màu chữ */
+    padding: 10px 20px; /* Padding để làm nút lớn hơn */
+    border-radius: 4px; /* Bo góc nhẹ cho nút */
+    font-size: 16px; /* Kích thước chữ */
+    font-weight: bold; /* Chữ đậm */
+    transition: all 0.3s ease; /* Hiệu ứng chuyển tiếp */
+  }
+  
+  .continue-shopping-btn:hover {
+    background-color: #333; /* Màu nền khi hover */
+    color: #fff; /* Màu chữ khi hover */
+    text-decoration: none; /* Loại bỏ gạch chân của liên kết */
+  }
+  
+  .continue-shopping-btn i {
+    margin-right: 8px; /* Khoảng cách giữa biểu tượng và văn bản */
+  }
+  
+  

@@ -7,6 +7,7 @@ import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import backgroundImage from "../../../assets/imgs/register.png";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -100,115 +101,141 @@ export default function UserSignUp() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <BackArrow />
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
+    <div
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        height: '100vh',
+        width: '100%',
+      }}
+    >
+      <ThemeProvider theme={theme}>
+        <BackArrow />
+        <Container component="main" maxWidth="xs" 
+        sx={{
+          backgroundColor: '#fafafa', 
+          padding: '15px',
+          borderRadius: '8px',
+          boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+          marginRight: '15%',
+          transform: 'translateY(45%)',
+          transform: 'translateX(3%)',
+        }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Đăng ký
-          </Typography>
+          <CssBaseline />
           <Box
-            component="form"
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
+            sx={{
+              mt: 3,
+              margin: '0 auto',
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              padding: "2rem",
+              width: "95%",
+            }}
           >
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="given-name"
-                  name="firstName"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="Họ"
-                  autoFocus
-                  onChange={(event) => setFirstName(event.target.value)}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Tên"
-                  name="lastName"
-                  autoComplete="family-name"
-                  onChange={(event) => setLastName(event.target.value)}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email"
-                  name="email"
-                  autoComplete="email"
-                  onChange={(event) => setEmail(event.target.value)}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Mật khẩu"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                  onChange={(event) => setPassword(event.target.value)}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="comfirm_password"
-                  label="Nhập lại mật khẩu"
-                  type="password"
-                  id="comfirm_password"
-                  autoComplete="new-password"
-                  onChange={(event) => setConfirmPassword(event.target.value)}
-                />
-              </Grid>
-              {registerError?.status && (
-                <Grid item xs={12}>
-                  <p style={{ color: "red", margin: 0 }}>
-                    {registerError?.error}
-                  </p>
-                </Grid>
-              )}
-            </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
+            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
               Đăng ký
-            </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="/login" variant="body2">
-                  Bạn đã có tài khoản? Đăng nhập
-                </Link>
+            </Typography>
+            <Box
+              component="form"
+              noValidate
+              onSubmit={handleSubmit}
+              sx={{ mt: 3,}}
+
+            >
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    autoComplete="given-name"
+                    name="firstName"
+                    required
+                    fullWidth
+                    id="firstName"
+                    label="Họ"
+                    autoFocus
+                    onChange={(event) => setFirstName(event.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="lastName"
+                    label="Tên"
+                    name="lastName"
+                    autoComplete="family-name"
+                    onChange={(event) => setLastName(event.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email"
+                    name="email"
+                    autoComplete="email"
+                    onChange={(event) => setEmail(event.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    name="password"
+                    label="Mật khẩu"
+                    type="password"
+                    id="password"
+                    autoComplete="new-password"
+                    onChange={(event) => setPassword(event.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    name="comfirm_password"
+                    label="Nhập lại mật khẩu"
+                    type="password"
+                    id="comfirm_password"
+                    autoComplete="new-password"
+                    onChange={(event) => setConfirmPassword(event.target.value)}
+                  />
+                </Grid>
+                {registerError?.status && (
+                  <Grid item xs={12}>
+                    <p style={{ color: "red", margin: 0 }}>
+                      {registerError?.error}
+                    </p>
+                  </Grid>
+                )}
               </Grid>
-            </Grid>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Đăng ký
+              </Button>
+              <Grid container justifyContent="flex-end">
+                <Grid item>
+                  <Link href="/login" variant="body2">
+                    Bạn đã có tài khoản? Đăng nhập
+                  </Link>
+                </Grid>
+              </Grid>
+            </Box>
           </Box>
-        </Box>
-      </Container>
-    </ThemeProvider>
+        </Container>
+      </ThemeProvider>
+    </div>
+
   );
 }

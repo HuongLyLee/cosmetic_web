@@ -1,0 +1,52 @@
+/* Đảm bảo kích thước đồng nhất cho sản phẩm */
+.product-item {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Đảm bảo nó lấp đầy chiều cao của container */
+    max-height: 480px; /* Chiều cao cố định để duy trì đồng nhất */
+    border: 1px solid #ddd; /* Viền tùy chọn */
+    margin: 15px; /* Lề tùy chọn */
+    border-radius: 8px; /* Góc bo tròn tùy chọn */
+    overflow: hidden; /* Ẩn phần vượt quá */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Đổ bóng tùy chọn */
+    background-color: #fff; /* Màu nền tùy chọn */
+    min-width: 220px;
+  }
+  
+  .product-item img {
+    object-fit: cover; /* Đảm bảo ảnh bao phủ khu vực */
+    height: 200px; 
+  }
+  
+  .product-item .text-center .a .product-name {
+    flex-grow: 1; /* Cho phép nó mở rộng và lấp đầy không gian */
+    padding: 5px; 
+  }
+
+  .product-item .text-center .text-body{
+    flex-grow: 1; 
+    padding: 3px; 
+    font-size: 0.9rem; 
+  }
+  
+  .product-item .text-center a{
+    display: block;
+    font-size: 1rem; /* Kích thước font */
+    color: #000; 
+    text-decoration: none; /* Xóa gạch chân */
+    line-height: 1.5em; /* Chiều cao dòng */
+    max-height: 4.5em; /* Chiều cao tối đa cho 2 dòng văn bản */
+    overflow: hidden; /* Ẩn phần văn bản vượt quá */
+    text-overflow: ellipsis; /* Hiển thị ellipsis cho phần vượt quá */
+  }
+  
+  .product-item small a {
+    color: #333; /* Màu sắc bình thường của liên kết */
+    text-decoration: none; /* Không có gạch chân khi không hover */
+  }
+
+  .product-item small a:hover {
+    color: #000 !important; 
+    text-decoration: underline; /* Gạch chân khi hover */
+  }
+  

@@ -57,38 +57,14 @@ export default function NewProduct() {
               <p>Hàng hoá luôn được cập nhật liên tục</p>
             </div>
           </div>
-          <div
-            className="col-lg-6 text-start text-lg-end wow slideInRight"
-            data-wow-delay="0.1s"
-          >
-            <ul className="nav nav-pills d-inline-flex justify-content-end mb-5">
-              {listCategory?.map((item, index) => {
-                return (
-                  <li
-                    className="nav-item me-2"
-                    key={`home-category-item-${index}`}
-                    onClick={() => {
-                      setActiveCategory(item?._id);
-                    }}
-                    style={{ marginTop: "20px" }}
-                  >
-                    <a
-                      className={`btn btn-outline-primary border-2 
-                                  ${activeCategory === item?._id ? "active" : ""}`}
-                      data-bs-toggle="pill"
-                    >
-                      {item?.category_name}
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
         </div>
         <div className="tab-content">
           <div id="tab-1" className="tab-pane fade show p-0 active">
             <div className="row g-4">
+              {console.log(listProduct)}
+
               {listProduct?.map((item, index) => {
+                console.log(item);
                 return (
                   <div
                     className="col-xl-3 col-lg-4 col-md-6 wow fadeInUp"
@@ -109,18 +85,28 @@ export default function NewProduct() {
                   </div>
                 );
               })}
+
               <div
                 className="col-12 text-center wow fadeInUp"
                 data-wow-delay="0.1s"
               >
                 <a
                   className="btn rounded-pill py-3 px-5 text-white"
-                  style={{ backgroundColor: "#bd876a" }}
+                  style={{ backgroundColor: "#d8856a" }}
                   href="/product"
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = "#c8745a"; 
+                    e.target.style.transform = "scale(1.05)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = "#d8856a";
+                    e.target.style.transform = "scale(1)"; 
+                  }}
                 >
                   Xem thêm
                 </a>
               </div>
+
             </div>
           </div>
         </div>

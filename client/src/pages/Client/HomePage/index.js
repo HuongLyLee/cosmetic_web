@@ -1,6 +1,6 @@
 import React from "react";
-import Banner3 from "../../../assets/imgs/banner3.jpeg";
-import Banner4 from "../../../assets/imgs/banner4.jfif";
+import Banner3 from "../../../assets/imgs/banner3.png";
+import Banner4 from "../../../assets/imgs/banner4.png";
 import Banner2 from "../../../assets/imgs/banner2.jpeg";
 import AboutHomePage from "../../../assets/imgs/about-homepage.jpg";
 import Lipstick from "../../../assets/imgs/lipstick.jpeg";
@@ -26,23 +26,22 @@ export default function HomePage() {
               <img className="w-100" src={Banner4} alt="Image" />
               <div className="carousel-caption">
                 <div className="container">
-                  <div className="row justify-content-start">
+                  <div className="row justify-content-center">
                     <div className="col-lg-7">
-                      <h1 className="display-2 mb-5 animated slideInDown">
-                        Mỹ phẩm chính hãng tốt nhất hiện nay
-                      </h1>
                       <a
-                        href='/'
+                        href='/product'
                         className="btn rounded-pill py-sm-3 px-sm-5 text-white"
-                        style={{ backgroundColor: "#bd876a" }}
+                        style={{ backgroundColor: "#d8856a", marginTop: "150px" }}
+                        onMouseEnter={(e) => {
+                          e.target.style.backgroundColor = "#c8745a"; 
+                          e.target.style.transform = "scale(1.05)"; 
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.backgroundColor = "#d8856a"; 
+                          e.target.style.transform = "scale(1)";
+                        }}
                       >
                         Sản phẩm
-                      </a>
-                      <a
-                        href
-                        className="btn btn-secondary rounded-pill py-sm-3 px-sm-5 ms-3"
-                      >
-                        Dịch vụ
                       </a>
                     </div>
                   </div>
@@ -51,31 +50,7 @@ export default function HomePage() {
             </div>
 
             <div className="carousel-item">
-              <img className="w-100" src={Banner3} alt="Image" />
-              <div className="carousel-caption">
-                <div className="container">
-                  <div className="row justify-content-start">
-                    <div className="col-lg-7">
-                      <h1 className="display-2 mb-5 animated slideInDown">
-                        Mỹ phẩm chính hãng tốt nhất hiện nay
-                      </h1>
-                      <a
-                        href='/product'
-                        className="btn rounded-pill py-sm-3 px-sm-5"
-                        style={{ backgroundColor: "#bd876a" }}
-                      >
-                        Sản phẩm
-                      </a>
-                      <a
-                        href
-                        className="btn btn-secondary rounded-pill py-sm-3 px-sm-5 ms-3"
-                      >
-                        Dịch vụ
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <img className="w-100" style={{ maxHeight: '720px', objectFit: 'cover' }} src={Banner3} alt="Image" />
             </div>
           </div>
 
@@ -85,9 +60,10 @@ export default function HomePage() {
             data-bs-target="#header-carousel"
             data-bs-slide="prev"
           >
-            <span className="carousel-control-prev-icon" aria-hidden="true" />
-            <span className="visually-hidden">Previous</span>
+            <span className="carousel-control-prev-icon" aria-hidden="true"/>
+            <span className="visually-hidden" >Previous</span>
           </button>
+
           <button
             className="carousel-control-next"
             type="button"
@@ -114,7 +90,7 @@ export default function HomePage() {
                 />
               </div>
             </div>
-            <div className="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+            <div className="col-lg-6 wow fadeIn" data-wow-delay="0.5s"  style={{ textAlign: "justify"}}>
               <h1 className="display-5 mb-4"> MINT COSMETICS</h1>
               <p className="mb-4">
                 Cosmetics - thương hiệu đi đầu trong ngành phân phối mỹ phẩm chính hãng, phục vụ cho nhu cầu 

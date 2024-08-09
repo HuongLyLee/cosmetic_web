@@ -1,5 +1,8 @@
 import React from "react";
 import AboutCosmetic from "../../../assets/imgs/about-cosmetic.jpeg";
+import Chatbox from "../../../assets/imgs/chat-box.png";
+import Service from "../../../assets/imgs/customer-service.png";
+import Message from "../../../assets/imgs/message.png";
 
 export default function AboutPage() {
   return (
@@ -35,15 +38,15 @@ export default function AboutPage() {
           <div className="row g-5 align-items-center">
             <div className="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
               <div className="about-img position-relative overflow-hidden p-5 pe-0">
-                <img className="img-fluid w-80" src={AboutCosmetic} style={{ width: "85%", height: "auto" }}/>
+                <img className="img-fluid w-80" src={AboutCosmetic} style={{ width: "85%", height: "auto" }} />
               </div>
             </div>
 
             <div className="col-lg-6 wow fadeIn" data-wow-delay="0.5s"
-                 style={{ textAlign: "justify", color: "black" }}
+              style={{ textAlign: "justify", color: "black" }}
             >
               <h1 className="display-5 mb-4"
-                  style={{ color: "#ed6f66" }}
+                style={{ color: "#ed6f66" }}
               >
                 COSMETIC STORE
               </h1>
@@ -70,7 +73,7 @@ export default function AboutPage() {
           </div>
 
           <div className="row g-5 align-items-center"
-               style={{ textAlign: "justify", color: "black", paddingTop: "20px" }}
+            style={{ textAlign: "justify", color: "black", paddingTop: "20px" }}
           >
             <p>
               Thấu hiểu được tầm quan trọng trong việc mang đến những sản phẩm
@@ -104,8 +107,8 @@ export default function AboutPage() {
               </p>
             </ul>
             <p style={{ marginTop: "5px" }}>
-              Vẻ ngoài rạng rỡ xinh đẹp từ làn da đến vóc dáng sẽ giúp chúng ta tự tin hơn rất nhiều. 
-              Vậy nên đừng ngần ngại đến Mint và chia sẻ với Mint những mong muốn của bạn về những sản 
+              Vẻ ngoài rạng rỡ xinh đẹp từ làn da đến vóc dáng sẽ giúp chúng ta tự tin hơn rất nhiều.
+              Vậy nên đừng ngần ngại đến Mint và chia sẻ với Mint những mong muốn của bạn về những sản
               phẩm làm đẹp an toàn, hiệu quả.
             </p>
           </div>
@@ -115,7 +118,7 @@ export default function AboutPage() {
 
       {/* Feature Start */}
       <div className="container-fluid my-5 py-6"
-          style={{ backgroundColor: "#f7d1b2" }}
+        style={{ backgroundColor: "#f7d1b2" }}
       >
         <div className="container">
           <div
@@ -179,6 +182,61 @@ export default function AboutPage() {
         </div>
       </div>
       {/* Feature End */}
+
+      {/* Start */}
+      <div className="container-fluid my-4 py-4"
+        style={{ backgroundColor: "#fff" }}
+      >
+        <div className="container">
+          <div
+            className="section-header text-center mx-auto mb-5 wow fadeInUp"
+            data-wow-delay="0.1s"
+            style={{ maxWidth: "500px" }}
+          >
+            <h1 className="display-5 mb-3">Trung tâm hỗ trợ</h1>
+            <p>Quý khách có thể liên hệ với chúng tôi qua các hình thức sau</p>
+          </div>
+          <div className="row g-4">
+            <div
+              className="col-lg-4 col-md-6 wow fadeInUp"
+              data-wow-delay="0.1s"
+            >
+              <div className="bg-white text-center h-100 p-4 p-xl-5">
+                <img className="mb-3" src={Service} style={{ width: "17%", height: "auto" }} />
+                <h4 className="mb-3">Gọi chúng tôi</h4>
+                <p className="mb-4">
+                  0582 311 225
+                </p>
+              </div>
+            </div>
+            <div
+              className="col-lg-4 col-md-6 wow fadeInUp"
+              data-wow-delay="0.3s"
+            >
+              <div className="bg-white text-center h-100 p-4 p-xl-5">
+                <img className="mb-3" src={Chatbox} style={{ width: "17%", height: "auto" }} />
+                <h4 className="mb-3">Gửi email cho chúng tôi</h4>
+                <p className="mb-4">
+                  mintcosmetic@gmail.com
+                </p>
+              </div>
+            </div>
+            <div
+              className="col-lg-4 col-md-6 wow fadeInUp"
+              data-wow-delay="0.5s"
+            >
+              <div className="bg-white text-center h-100 p-4 p-xl-5">
+                <img className="mb-3" src={Message} style={{ width: "17%", height: "auto" }} />
+                <h4 className="mb-3">Để lại lời nhắn </h4>
+                <p className="mb-4">
+                  Chat
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* End */}
 
     </div>
   );
