@@ -55,7 +55,7 @@ export default function Header() {
         className="container-fluid fixed-top px-0 wow fadeIn"
         data-wow-delay="0.1s"
       >
-        <div className="top-bar row gx-0 align-items-center d-none d-lg-flex" style={{backgroundColor: "#fff"}}>
+        <div className="top-bar row gx-0 align-items-center d-none d-lg-flex">
           <div className="col-lg-6 px-5 text-start">
             <small>
               <i className="fa fa-map-marker-alt me-2" />
@@ -86,13 +86,13 @@ export default function Header() {
           className="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5 wow fadeIn"
           data-wow-delay="0.1s"
         >
-          {/* <a href="/" className="navbar-brand ms-4 ms-lg-0">
+          <a href="/" className="navbar-brand ms-4 ms-lg-0">
             <h1 className="fw-bold m-0"
                 style={{ color: "#dc3545" }}
             >
               Mint 
             </h1>
-          </a> */}
+          </a>
           
           <button
             type="button"
@@ -139,6 +139,9 @@ export default function Header() {
               </a>
               <a href="/about" className="nav-item nav-link">
                 Về chúng tôi
+              </a>
+              <a href="/buy-guide" className="nav-item nav-link">
+                Chính sách
               </a>
             </div>
             <div className="d-none d-lg-flex ms-2">

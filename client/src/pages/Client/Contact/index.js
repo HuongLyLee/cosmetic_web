@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import _ from "lodash";
-import { isVietnamesePhoneNumber, validateEmail } from '../../../utils/helpers'
+import { isVietnamesePhoneNumber, validateEmail } from '../../../utils/helpers' 
 import { toast } from "react-toastify";
 import { contactAPI } from "../../../services/contactAPI";
 
@@ -85,7 +85,7 @@ export default function Contact() {
         </div>
       </div>
       {/* Page Header End */}
-
+      
       {/* Contact Start */}
       <div className="container-xxl py-6">
         <div className="container">
@@ -105,7 +105,7 @@ export default function Contact() {
               data-wow-delay="0.1s"
             >
               <div className="text-black d-flex flex-column justify-content-center h-100 p-5"
-                style={{ backgroundColor: "#f7d1b2" }}
+                   style={{ backgroundColor: "#f7d1b2" }}
               >
                 <h5 className="text-white">Số điện thoại liên hệ</h5>
                 <p className="mb-5">
@@ -155,9 +155,9 @@ export default function Contact() {
               className="col-lg-7 col-md-12 wow fadeInUp"
               data-wow-delay="0.5s"
             >
-              <h5 className="mb-4">
+              <p className="mb-4">
                 Hãy nhập thông tin góp ý của các bạn vào phía bên dưới nhé
-              </h5>
+              </p>
               <form onSubmit={(event) => event.preventDefault()}>
                 <div className="row g-3">
                   <div className="col-md-6">
@@ -255,17 +255,7 @@ export default function Contact() {
                   <div className="col-12">
                     <button
                       className="btn rounded-pill py-3 px-5 text-white"
-                      style={{
-                        backgroundColor: "#d8856a",
-                      }}
-                      onMouseEnter={(e) => {
-                        e.target.style.backgroundColor = "#c8745a"; // Màu tối hơn khi hover
-                        e.target.style.transform = "scale(1.05)"; // Hiệu ứng phóng to nhẹ khi hover
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.backgroundColor = "#d8856a"; // Trở về màu ban đầu
-                        e.target.style.transform = "scale(1)"; // Trở về kích thước ban đầu
-                      }}
+                      style={{ backgroundColor: "#bd876a" }}
                       type="submit"
                       onClick={() => sendContact()}
                     >

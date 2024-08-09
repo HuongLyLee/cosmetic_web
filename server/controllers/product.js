@@ -97,7 +97,6 @@ module.exports = {
 
   deleteProductData: asyncHandler(async (req, res) => {
     const { productId } = req?.params;
-    console.log("Product ID:", productId);
     const response = await deleteProductData(productId);
     res.send({ success: response });
   }),

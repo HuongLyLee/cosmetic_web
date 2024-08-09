@@ -23,10 +23,6 @@ import AboutPage from "../pages/Client/About";
 import AdminBuyGuide from "../pages/Admin/GuyBuide";
 import BuyGuide from "../pages/Client/BuyGuide";
 import AdminChat from "../pages/Admin/Chat";
-import GeneralPolicy from "../pages/Client/Policies/Policy";
-import PurchaseGuide from "../pages/Client/Policies/Guideline";
-import PrivacyPolicy from "../pages/Client/Policies/Privacy";
-import TermsOfUse from "../pages/Client/Policies/Terms";
 
 const ClientLayoutPage = [
   {
@@ -68,22 +64,6 @@ const ClientLayoutPage = [
   {
     path: "/buy-guide",
     page: <BuyGuide />,
-  },
-  {
-    path: "/policy",
-    page: <GeneralPolicy />,
-  },
-  {
-    path: "/guideline",
-    page: <PurchaseGuide />,
-  },
-  {
-    path: "/privacy",
-    page: <PrivacyPolicy />,
-  },
-  {
-    path: "/terms",
-    page: <TermsOfUse />,
   },
 ];
 

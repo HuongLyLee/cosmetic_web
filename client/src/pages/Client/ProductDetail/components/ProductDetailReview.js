@@ -150,6 +150,16 @@ export default function ProductDetailReview(props) {
 
   return (
     <div style={{ marginBottom: "30px" }}>
+      <h6
+        style={{
+          textAlign: "center",
+          fontSize: "1.5em",
+          color: "#FF5721",
+          fontWeight: 600,
+        }}
+      >
+        Đánh giá khách hàng
+      </h6>
       <div
         className="row"
         style={{
@@ -165,20 +175,21 @@ export default function ProductDetailReview(props) {
           <FormControl fullWidth>
             <Stack
               sx={{ my: "10px" }}
+              justifyContent={"center"}
               flexDirection={"row"}
               gap={3}
             >
               {[1, 2, 3, 4, 5]?.map((item) => {
                 return item <= starReview ? (
                   <StarIcon
-                    sx={{ color: "#FFD700" }}
+                    sx={{ color: "#FC6D2E" }}
                     onClick={() => {
                       setStarReview(item - 1);
                     }}
                   />
                 ) : (
                   <StarBorderIcon
-                    sx={{ color: "#FFD700" }}
+                    sx={{ color: "#FC6D2E" }}
                     onClick={() => {
                       setStarReview(item);
                     }}
@@ -189,28 +200,22 @@ export default function ProductDetailReview(props) {
             <TextareaAutosize
               aria-label="minimum height"
               minRows={4}
-              placeholder="Viết đánh giá... "
+              placeholder="Nhập đánh giá"
               value={addReviewData}
               onChange={(event) => setAddReviewData(event.target.value)}
-              style={{
-                padding: "8px 10px",
-                border: "1px solid #ccc",
-                borderRadius: "8px",
-                fontSize: "16px",
-                transition: "border-color 0.3s, box-shadow 0.3s",
-              }}
+              style={{ padding: "5px 10px" }}
             />
 
             <Stack
               sx={{ marginTop: "10px" }}
-              justifyContent={"end"}
+              justifyContent={"center"}
               flexDirection={"row"}
             >
               <Box>
                 <Button
                   variant="contained"
                   onClick={() => createNewReview()}
-                  sx={{ color: "white !important", marginBottom: "20px" }}
+                  sx={{ color: "white !important" }}
                 >
                   Gửi đánh giá
                 </Button>
@@ -222,6 +227,7 @@ export default function ProductDetailReview(props) {
       </div>
 
       {/*  */}
+
       {reviewData.map((reviewItem, reviewIndex) => {
         return (
           <div key={`product-review-item-${reviewIndex}`}>
@@ -232,7 +238,9 @@ export default function ProductDetailReview(props) {
                   paddingLeft: "20px",
                   paddingRight: "20px",
                   boxSizing: "border-box",
-                  marginTop: "15px",
+                  marginTop: "50px",
+                  marginLeft: 0,
+                  marginRight: 0,
                 }}
               >
                 <div className="col-sm-2 col-md-1"></div>
@@ -251,7 +259,6 @@ export default function ProductDetailReview(props) {
                           background: "rgb(255,86,34)",
                           color: "white",
                           fontWeight: "800",
-                          borderRadius: "100px",
                         }}
                       >
                         {reviewItem?.last_name?.charAt(0)?.toUpperCase()}
@@ -264,41 +271,41 @@ export default function ProductDetailReview(props) {
                           fontSize: "1.2em",
                           fontWeight: "800",
                           marginBottom: 0,
+                          color: "rgb(255,86,34)",
                         }}
                       >
                         {reviewItem?.first_name + " " + reviewItem?.last_name}
                       </h6>
                     </div>
-
-                    <p style={{ paddingLeft: "15px", fontSize: "0.9em", margin: "0", color: "#808080" }}>
-                      {reviewItem.review_date && dateTimeConverter(reviewItem?.review_date)}
-                    </p>
+                    <div style={{ marginLeft: "10px" }}>
+                      <Stack
+                        sx={{ my: "10px" }}
+                        justifyContent={"center"}
+                        flexDirection={"row"}
+                      >
+                        {[1, 2, 3, 4, 5]?.map((item) => {
+                          return item <= reviewItem?.star ? (
+                            <StarIcon
+                              sx={{ color: "#FC6D2E", width: "15px" }}
+                            />
+                          ) : (
+                            <StarBorderIcon
+                              sx={{ color: "#FC6D2E", width: "15px" }}
+                            />
+                          );
+                        })}
+                      </Stack>
+                    </div>
                   </Stack>
-
-                  <div style={{ marginLeft: "10px" }}>
-                    <Stack
-                      sx={{ my: "10px" }}
-                      justifyContent={"start"}
-                      flexDirection={"row"}
-                    >
-                      {[1, 2, 3, 4, 5]?.map((item) => {
-                        return item <= reviewItem?.star ? (
-                          <StarIcon
-                            sx={{ color: "#FFD700", width: "17px" }}
-                          />
-                        ) : (
-                          <StarBorderIcon
-                            sx={{ color: "#FFD700", width: "17px" }}
-                          />
-                        );
-                      })}
-                    </Stack>
-                  </div>
-
+                  <p style={{ marginBottom: 0, fontSize: "0.8em" }}>
+                    Ngày review:{" "}
+                    {reviewItem.review_date &&
+                      dateTimeConverter(reviewItem?.review_date)}
+                  </p>
                   <FormControl fullWidth>
                     <TextareaAutosize
                       aria-label="minimum height"
-                      minRows={2}
+                      minRows={3}
                       value={
                         reviewItem?._id === reviewEditId
                           ? reviewEditContent
@@ -307,23 +314,12 @@ export default function ProductDetailReview(props) {
                       disabled={
                         reviewItem?._id === reviewEditId ? false : true
                       }
-                      style={{
-                        resize: "none",
-                        border: "1px solid #ccc",
-                        borderRadius: "8px",
-                        padding: "12px",
-                        fontSize: "16px",
-                        backgroundColor: "#f9f9f9",
-                        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-                        transition: "border-color 0.3s, box-shadow 0.3s",
-                      }}
+                      style={{ resize: "none" }}
                       onChange={(event) => {
                         setReviewEditContent(event?.target?.value);
                       }}
                     />
                   </FormControl>
-
-
                   <div
                     style={{
                       display: "flex",
@@ -332,7 +328,7 @@ export default function ProductDetailReview(props) {
                     }}
                   >
                     {Number(reviewItem?.user_id) ===
-                      Number(userData?._id) ? (
+                    Number(userData?._id) ? (
                       <div
                         style={{
                           display: "flex",
@@ -459,14 +455,13 @@ export default function ProductDetailReview(props) {
                                       color: "white",
                                       fontWeight: "600",
                                       fontSize: "14px",
-                                      borderRadius: "50px",
                                     }}
                                   >
                                     {childrenReviewItem?.author_type === "admin"
                                       ? "Q"
                                       : childrenReviewItem?.last_name
-                                        ?.charAt(0)
-                                        ?.toUpperCase()}
+                                          ?.charAt(0)
+                                          ?.toUpperCase()}
                                   </h6>
                                 </div>
                                 <div
@@ -482,22 +477,19 @@ export default function ProductDetailReview(props) {
                                       fontSize: "14px",
                                       fontWeight: "600",
                                       marginBottom: 0,
+                                      color: "#3CB814",
                                     }}
                                   >
                                     {childrenReviewItem?.author_type === "admin"
                                       ? "Quản trị viên"
-                                      : childrenReviewItem?.first_name + " " + childrenReviewItem?.last_name}
+                                      : childrenReviewItem?.first_name +
+                                        " " +
+                                        childrenReviewItem?.last_name}
                                   </h6>
-
-                                  <p
-                                    style={{ paddingLeft: "12px", fontSize: "0.8em", margin: "0", color: "#808080" }}
-                                  >
-                                    {childrenReviewItem.review_date &&
-                                      dateTimeConverter(reviewItem?.review_date)}
-                                  </p>
-
                                   {childrenReviewItem?.author_type !==
-                                    "admin" && childrenReviewItem?.user_id === userData?._id ? (
+                                    "admin" &&
+                                  childrenReviewItem?.user_id ===
+                                    userData?._id ? (
                                     <div style={{ marginLeft: "15px" }}>
                                       <div
                                         onClick={async () => {
@@ -530,7 +522,16 @@ export default function ProductDetailReview(props) {
                                   )}
                                 </div>
                               </Stack>
-
+                              <p
+                                style={{
+                                  marginBottom: 0,
+                                  fontSize: "0.8em",
+                                }}
+                              >
+                                Ngày review:{" "}
+                                {childrenReviewItem.review_date &&
+                                  dateTimeConverter(reviewItem?.review_date)}
+                              </p>
                               <TextareaAutosize
                                 aria-label="minimum height"
                                 minRows={2}
@@ -538,13 +539,6 @@ export default function ProductDetailReview(props) {
                                 style={{
                                   resize: "none",
                                   width: "100%",
-                                  border: "1px solid #ccc",
-                                  borderRadius: "8px",
-                                  padding: "12px",
-                                  fontSize: "16px",
-                                  backgroundColor: "#f9f9f9",
-                                  boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-                                  transition: "border-color 0.3s, box-shadow 0.3s",
                                 }}
                                 disabled={true}
                               />

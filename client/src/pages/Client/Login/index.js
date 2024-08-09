@@ -7,7 +7,6 @@ import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import backgroundImage from "../../../assets/imgs/login.png";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -61,107 +60,97 @@ export default function UserLogin() {
         })
       );
 
-      toast.success("Bạn đã đăng nhập thành công, chuyển hướng sang trang chính sau 2 giây");
+      toast.success(
+        "Bạn đã đăng nhập thành công, chuyển hướng sang trang chính sau 2 giây"
+      );
 
       if (payload?.user?.type === "user") {
-        setTimeout(() => { navigate("/"); }, 2000);
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
       } else {
-        setTimeout(() => { navigate("/admin"); }, 2000);
+        setTimeout(() => {
+          navigate("/admin");
+        }, 2000);
       }
     } else {
-      toast.error(loginRes?.error || "Bạn đã đăng nhập thất bại, vui lòng thử lại sau");
+      toast.error(
+        loginRes?.error || "Bạn đã đăng nhập thất bại, vui lòng thử lại sau"
+      );
     }
   };
 
   return (
-    <div
-      style={{
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        height: '100vh',
-        width: '100%',
-      }}
-    >
-      <ThemeProvider theme={theme}>
-        <BackArrow />
-        <Container component="main" maxWidth="xs"
+    <ThemeProvider theme={theme}>
+      <BackArrow />
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
           sx={{
-            backgroundColor: '#fafafa', 
-            padding: '20px', 
-            borderRadius: '8px',
-            boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-            marginLeft: '15%', 
-            transform: 'translateY(45%)',
-
+            marginTop: 8,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          <CssBaseline /> 
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Đăng nhập
+          </Typography>
           <Box
-            sx={{
-              margin: '0 auto',
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              padding: "2rem",
-              width: "95%", 
-            }}
+            component="form"
+            onSubmit={handleSubmit}
+            noValidate
+            sx={{ mt: 1 }}
           >
-            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}> <LockOutlinedIcon /> </Avatar>
-            <Typography component="h1" variant="h5"> Đăng nhập </Typography>
-            <Box
-              component="form" noValidate
-              onSubmit={handleSubmit}
-              sx={{ mt: 1 }}
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={12}>
+                <TextField
+                  id="email"
+                  name="email"
+                  required
+                  fullWidth
+                  label="Email"
+                  placeholder="Nhập vào địa chỉ email"
+                />
+              </Grid>
+              <Grid item xs={12} sm={12}>
+                <TextField
+                  id="password"
+                  name="password"
+                  required
+                  fullWidth
+                  label="Mật khẩu"
+                  placeholder="Nhập vào mật khẩu"
+                  type={"password"}
+                />
+              </Grid>
+              {loginError?.status && (
+                <Grid item xs={12}>
+                  <p style={{ color: "red", margin: 0 }}>{loginError?.error}</p>
+                </Grid>
+              )}
+            </Grid>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
             >
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={12}>
-                  <TextField
-                    id="email"
-                    name="email"
-                    required
-                    fullWidth
-                    label="Email"
-                    placeholder="Nhập vào địa chỉ email"
-                  />
-                </Grid>
-                <Grid item xs={12} sm={12}>
-                  <TextField
-                    id="password"
-                    name="password"
-                    required
-                    fullWidth
-                    label="Mật khẩu"
-                    placeholder="Nhập vào mật khẩu"
-                    type={"password"}
-                  />
-                </Grid>
-                {loginError?.status && (
-                  <Grid item xs={12}>
-                    <p style={{ color: "red", margin: 0 }}> {loginError?.error} </p>
-                  </Grid>
-                )}
+              Đăng nhập
+            </Button>
+            <Grid container>
+              <Grid item>
+                <Link href="/signup" variant="body2">
+                  {"Bạn chưa có tài khoản? Đăng kí"}
+                </Link>
               </Grid>
-              <Button
-                type="submit" variant="contained"
-                fullWidth
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Đăng nhập
-              </Button>
-              <Grid container>
-                <Grid item>
-                  <Link href="/signup" variant="body2">
-                    {"Bạn chưa có tài khoản? Đăng kí"}
-                  </Link>
-                </Grid>
-              </Grid>
-            </Box>
+            </Grid>
           </Box>
-        </Container>
-      </ThemeProvider>
-    </div>
-
+        </Box>
+      </Container>
+    </ThemeProvider>
   );
 }

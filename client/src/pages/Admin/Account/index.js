@@ -205,7 +205,7 @@ export default function AdminAccount() {
         <Typography
           component="h2"
           variant="h6"
-          color="black"
+          color="primary"
           gutterBottom
           sx={{ textAlign: "left" }}
         >

@@ -190,7 +190,7 @@
 
 .page-header {
     padding-top: 12rem;
-    padding-bottom: 8rem;
+    padding-bottom: 6rem;
     background: url(../img/banner1.jpeg) top right no-repeat;
     background-size: cover;
 }
@@ -214,7 +214,7 @@
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    background: #f8d2b3;
+    background: var(--primary);
 }
 
 .section-header::after {
@@ -225,7 +225,7 @@
     top: 10px;
     left: 50%;
     transform: translateX(-50%);
-    background: #ed6f67;
+    background: var(--secondary);
 }
 
 .section-header.text-start::before,
