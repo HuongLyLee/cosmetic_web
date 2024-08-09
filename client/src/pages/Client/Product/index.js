@@ -64,12 +64,12 @@ export default function Product() {
   const [priceSlider, setPriceSlider] = useState([MIN_PRICE, MAX_PRICE]);
   const searchText = useRef("");
   const searchInputRef = useRef(null);
-  const { ref, isComponentVisible, setIsComponentVisible } =
-    useComponentVisible(false);
+  const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false);
   const [searchList, setSearchList] = useState([]);
   const navigate = useNavigate();
   const search = useLocation().search;
   const queryCategory = new URLSearchParams(search).get("category");
+  const location = useLocation();
 
   const getCategoryData = async () => {
     const categoryList = await categoryAPI.getAllCategory();
@@ -152,6 +152,7 @@ export default function Product() {
 
   return (
     <div>
+      {/* Page Header Start */}
       <div
         className="container-fluid page-header mb-5 wow fadeIn"
         data-wow-delay="0.1s"
@@ -163,14 +164,9 @@ export default function Product() {
           <nav aria-label="breadcrumb animated slideInDown">
             <ol className="breadcrumb mb-0">
               <li className="breadcrumb-item">
-                <a className="text-body" href="/">
-                  Trang chủ
-                </a>
+                <a className="text-body" href="/"> Trang chủ </a>
               </li>
-              <li
-                className="breadcrumb-item text-dark active"
-                aria-current="page"
-              >
+              <li className="breadcrumb-item text-dark active" aria-current="page">
                 Sản phẩm
               </li>
             </ol>
@@ -183,9 +179,9 @@ export default function Product() {
       <div className="container-xxl py-4">
         <div className="container">
           <div className="row g-5">
+
             {/* Left Sidebar Start */}
             <div className="col-lg-3">
-
               {/* Tìm kiếm */}
               <div className="mb-5">
                 <Typography gutterBottom>Tìm kiếm</Typography>
@@ -197,20 +193,9 @@ export default function Product() {
                       }
                     }}
                     customStyle={{ width: "100%" }}
-                    handleChange={(value) => {
-                      searchText.current = value;
-                      debounceFn(value);
-                    }}
+                    handleChange={(value) => { searchText.current = value; debounceFn(value); }}
                     ref={searchInputRef}
-                    handleSubmit={() => {
-                      getProductData(
-                        activeCategory,
-                        currentPage,
-                        searchText.current,
-                        priceSlider?.[0],
-                        priceSlider?.[1]
-                      );
-                    }}
+                    handleSubmit={() => { getProductData(activeCategory, currentPage, searchText.current, priceSlider?.[0], priceSlider?.[1]); }}
                   />
                   {(isComponentVisible && (
                     <ul
@@ -234,19 +219,12 @@ export default function Product() {
                         searchList?.map((item, index) => {
                           return (
                             <>
-                              <li
-                                key={`search-list-item-${index}`}
+                              <li key={`search-list-item-${index}`}
                                 style={{ cursor: "pointer" }}
-                                onClick={() => {
-                                  navigate(`/product/${item?._id}`);
-                                }}
+                                onClick={() => { navigate(`/product/${item?._id}`); }}
                               >
                                 <div
-                                  style={{
-                                    display: "flex",
-                                    justifyContent: "flex-start",
-                                    alignItems: "center",
-                                  }}
+                                  style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", }}
                                 >
                                   <div>
                                     <img
@@ -362,7 +340,6 @@ export default function Product() {
                   })}
                 </ul>
               </div>
-
             </div>
             {/* Left Sidebar End */}
 
@@ -392,17 +369,25 @@ export default function Product() {
                         </div>
                       );
                     })}
-                    <div
-                      className="col-12 text-center wow fadeInUp"
-                      data-wow-delay="0.1s"
-                    >
-                      <a
-                        className="btn rounded-pill py-3 px-5"
-                        style={{ backgroundColor: "#f7d1b2", }}
-                        href="/product"
-                      >
-                        Xem thêm
-                      </a>
+
+                    {/* đưa người dùng đến trang hoặc phần khác để xem thêm sản phẩm */}
+                    <div className="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
+                      {location.pathname !== "/product" && (
+                        <a href="/product"
+                          className="btn rounded-pill py-3 px-5"
+                          style={{ backgroundColor: "#d8856a", }}
+                          onMouseEnter={(e) => {
+                            e.target.style.backgroundColor = "#c8745a"; 
+                            e.target.style.transform = "scale(1.05)"; 
+                          }}
+                          onMouseLeave={(e) => {
+                            e.target.style.backgroundColor = "#d8856a"; 
+                            e.target.style.transform = "scale(1)"; 
+                          }}
+                        >
+                          Xem thêm
+                        </a>
+                      )}
                     </div>
                   </div>
                 ) : (
@@ -410,11 +395,21 @@ export default function Product() {
                     Không có sản phẩm phù hợp
                   </div>
                 )}
+
+                {/* hàm getProductData sẽ được gọi với số trang tiếp theo (currentPage + 1) để tải thêm sản phẩm */}
                 {currentPage + 1 < totalPage ? (
                   <div className="col-12 text-center mt-5">
                     <a
                       className="btn rounded-pill py-3 px-5"
-                      style={{ backgroundColor: "#bd876a" }}
+                      style={{ backgroundColor: "#d8856a" }}
+                      onMouseEnter={(e) => {
+                        e.target.style.backgroundColor = "#c8745a"; 
+                        e.target.style.transform = "scale(1.05)"; 
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.backgroundColor = "#d8856a"; 
+                        e.target.style.transform = "scale(1)";
+                      }}
                       onClick={() =>
                         getProductData(
                           activeCategory,

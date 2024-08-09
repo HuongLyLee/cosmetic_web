@@ -182,7 +182,7 @@ export default function AdminProduct() {
       return false;
     }
 
-    if (moment(moment().format('YYYY-MM-DD'), 'YYYY-MM-DD').isAfter(moment(start_new , 'YYYY-MM-DD')) && addProductModal.type === "add"){
+    if (moment(moment().format('YYYY-MM-DD'), 'YYYY-MM-DD').isAfter(moment(start_new, 'YYYY-MM-DD')) && addProductModal.type === "add") {
       setEditProductError({
         status: true,
         type: "error",
@@ -191,7 +191,7 @@ export default function AdminProduct() {
       return false;
     }
 
-    if (moment(end_new, 'YYYY-MM-DD').isBefore(moment(start_new , 'YYYY-MM-DD'))){
+    if (moment(end_new, 'YYYY-MM-DD').isBefore(moment(start_new, 'YYYY-MM-DD'))) {
       setEditProductError({
         status: true,
         type: "error",
@@ -409,78 +409,106 @@ export default function AdminProduct() {
               })
             }
           />
-          <CustomInput
-            label="Giá sản phẩm"
-            defaultValue={editProduct.product_price || 0}
-            type="number"
-            id="post-title"
-            variant="filled"
-            style={{ marginTop: 11, textAlign: "left" }}
-            onChange={(event) =>
-              setEditProduct({
-                ...editProduct,
-                product_price: event.target.value,
-              })
-            }
-          />
-          <CustomInput
-            label="Giá khuyến mãi"
-            defaultValue={editProduct.sale_price || 0}
-            type="number"
-            id="post-title"
-            variant="filled"
-            style={{ marginTop: 11, textAlign: "left" }}
-            onChange={(event) =>
-              setEditProduct({
-                ...editProduct,
-                sale_price: event.target.value,
-              })
-            }
-          />
-          <CustomInput
-            label="Số lượng sản phẩm"
-            defaultValue={editProduct?.product_quantity || 0}
-            type="number"
-            id="post-title"
-            variant="filled"
-            style={{ marginTop: 11, textAlign: "left" }}
-            onChange={(event) =>
-              setEditProduct({
-                ...editProduct,
-                product_quantity: event.target.value,
-              })
-            }
-          />
 
-          <CustomInput
-            label="Ngày bắt đầu new"
-            defaultValue={editProduct?.start_new || 0}
-            type="date"
-            id="start-new"
-            variant="filled"
-            style={{ marginTop: 11, textAlign: "left" }}
-            onChange={(event) =>
-              setEditProduct({
-                ...editProduct,
-                start_new: event.target.value,
-              })
-            }
-          />
+          <div style={{ display: "flex", gap: "25px", alignItems: "center" }}>
+            <CustomInput
+              label="Giá sản phẩm"
+              defaultValue={editProduct.product_price || 0}
+              type="number"
+              id="product-price"
+              variant="filled"
+              style={{ marginTop: 11, textAlign: "left", flex: 1 }}
+              onChange={(event) =>
+                setEditProduct({
+                  ...editProduct,
+                  product_price: event.target.value,
+                })
+              }
+            />
+            <CustomInput
+              label="Giá khuyến mãi"
+              defaultValue={editProduct.sale_price || 0}
+              type="number"
+              id="sale-price"
+              variant="filled"
+              style={{ marginTop: 11, textAlign: "left", flex: 1 }}
+              onChange={(event) =>
+                setEditProduct({
+                  ...editProduct,
+                  sale_price: event.target.value,
+                })
+              }
+            />
+          </div>
 
-          <CustomInput
-            label="Ngày kết thúc new"
-            defaultValue={editProduct?.end_new || 0}
-            type="date"
-            id="end-new"
-            variant="filled"
-            style={{ marginTop: 11, textAlign: "left" }}
-            onChange={(event) =>
-              setEditProduct({
-                ...editProduct,
-                end_new: event.target.value,
-              })
-            }
-          />
+          <div style={{ display: "flex", gap: '19px', justifyContent: "space-between" }}>
+            <CustomInput
+              label="Ngày bắt đầu"
+              defaultValue={editProduct?.start_new || 0}
+              type="date"
+              id="start-new"
+              variant="filled"
+              style={{ marginTop: 11, textAlign: "left", flex: 1, paddingTop: 10 }}
+              onChange={(event) =>
+                setEditProduct({
+                  ...editProduct,
+                  start_new: event.target.value,
+                })
+              }
+            />
+
+            <CustomInput
+              label="Ngày kết thúc"
+              defaultValue={editProduct?.end_new || 0}
+              type="date"
+              id="end-new"
+              variant="filled"
+              style={{ marginTop: 11, textAlign: "left", flex: 1, paddingTop: 10 }}
+              onChange={(event) =>
+                setEditProduct({
+                  ...editProduct,
+                  end_new: event.target.value,
+                })
+              }
+            />
+          </div>
+
+          <div style={{ display: 'flex', gap: '25px', marginTop: 11 }}>
+            <CustomInput
+              label="Số lượng sản phẩm"
+              defaultValue={editProduct?.product_quantity || 0}
+              type="number"
+              id="product-quantity"
+              variant="filled"
+              style={{ flex: 1, textAlign: "left" }}
+              onChange={(event) =>
+                setEditProduct({
+                  ...editProduct,
+                  product_quantity: event.target.value,
+                })
+              }
+            />
+
+            <FormControl variant="filled" style={{ flex: 1 }}>
+              <InputLabel id="product-status-label">Trạng thái</InputLabel>
+              <Select
+                labelId="product-status-label"
+                id="product-status"
+                value={editProduct.status || 'đang bán'}
+                onChange={(event) =>
+                  setEditProduct({
+                    ...editProduct,
+                    status: event.target.value,
+                  })
+                }
+              >
+                <MenuItem value="đang bán">Đang bán</MenuItem>
+                <MenuItem value="ngưng bán">Ngưng bán</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
+
+
 
           <div className="editor-wrapper" style={{ marginTop: "20px" }}>
             <label style={{ marginBottom: "10px" }}>Mô tả sản phẩm: </label>
@@ -547,7 +575,7 @@ export default function AdminProduct() {
         <Typography
           component="h2"
           variant="h6"
-          color="primary"
+          color="black"
           gutterBottom
           sx={{ textAlign: "left" }}
         >
@@ -610,7 +638,11 @@ export default function AdminProduct() {
                       key={row.code}
                     >
                       {columns.map((column) => {
+                        console.log(columns);
+                        
                         const value = row[column.id];
+                        console.log(value);
+                        
                         return (
                           <TableCell key={column.id} align={column.align}>
                             {column.id === "action" ? (
@@ -646,6 +678,7 @@ export default function AdminProduct() {
                                     <DeleteIcon />
                                   </Button>
                                 </CustomPopover>
+                                
                                 <Button
                                   sx={{
                                     height: "30px",

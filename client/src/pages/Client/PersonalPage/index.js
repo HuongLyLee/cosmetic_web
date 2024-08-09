@@ -17,7 +17,7 @@ export default function PersonalPage() {
   const [userInfo, setUserInfo] = useState({});
   const [historyTab, setHistoryTab] = useState(0);
   const navigate = useNavigate();
-  const userData = parseJSON(localStorage.getItem(USER_INFO_KEY))
+  const userData = parseJSON(localStorage.getItem(USER_INFO_KEY));
 
   const getUserData = async () => {
     try {
@@ -37,7 +37,7 @@ export default function PersonalPage() {
         userInfo?.phone_number?.trim()?.length &&
         !isVietnamesePhoneNumber(userInfo?.phone_number)
       ) {
-        return toast.error("Số diện thoại không đúng định dạng");
+        return toast.error("Số điện thoại không đúng định dạng");
       }
 
       if (
@@ -77,13 +77,14 @@ export default function PersonalPage() {
     } else {
       navigate("/login");
     }
-  }, []);
+  }, [navigate, userData?._id]);
 
   return (
     <div>
       <div
         className="container-fluid page-header wow fadeIn"
         data-wow-delay="0.1s"
+        style={{ backgroundColor: '#f8f9fa', padding: '20px 0' }}
       >
         <div className="container">
           <h1 className="display-3 mb-3 animated slideInDown">Trang cá nhân</h1>
@@ -106,40 +107,26 @@ export default function PersonalPage() {
       </div>
       <Box
         sx={{
-          paddingLeft: "50px",
-          paddingRight: "50px",
-          marginTop: "50px",
-          marginBottom: "50px",
+          padding: "30px 50px",
+          marginY: "50px",
+          borderRadius: "8px",
+          boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)"
         }}
       >
-        <Grid container spacing={2}>
+        <Grid container spacing={8}>
           <Grid item xs={12} sm={4}>
             <Stack
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems={"center"}
+              direction="column"
+              alignItems="center"
+              spacing={2}
             >
-              <Avatar />
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  width: "100%",
-                  marginTop: "10px",
-                }}
-              >
+              <Avatar sx={{ width: 100, height: 100, mb: 2 }} />
+              <Stack direction="row" spacing={2} width="100%">
                 <TextField
                   label="Họ"
-                  id="post-title"
                   variant="filled"
-                  style={{ marginTop: 11, textAlign: "left", width: "48%" }}
+                  fullWidth
                   value={userInfo?.first_name}
-                  sx={{
-                    ".css-10botns-MuiInputBase-input-MuiFilledInput-input": {
-                      marginTop: "12px",
-                    },
-                  }}
                   onChange={(event) =>
                     setUserInfo({
                       ...userInfo,
@@ -149,15 +136,9 @@ export default function PersonalPage() {
                 />
                 <TextField
                   label="Tên"
-                  id="post-title"
                   variant="filled"
-                  style={{ marginTop: 11, textAlign: "left", width: "48%" }}
+                  fullWidth
                   value={userInfo?.last_name}
-                  sx={{
-                    ".css-10botns-MuiInputBase-input-MuiFilledInput-input": {
-                      marginTop: "12px",
-                    },
-                  }}
                   onChange={(event) =>
                     setUserInfo({
                       ...userInfo,
@@ -165,20 +146,13 @@ export default function PersonalPage() {
                     })
                   }
                 />
-              </div>
+              </Stack>
 
               <TextField
                 label="Email"
-                defaultValue=""
-                id="contact-address"
                 variant="filled"
-                style={{ marginTop: 11, width: "100%" }}
+                fullWidth
                 value={userInfo.email}
-                sx={{
-                  ".css-10botns-MuiInputBase-input-MuiFilledInput-input": {
-                    marginTop: "12px",
-                  },
-                }}
                 onChange={(event) => {
                   setUserInfo({ ...userInfo, email: event.target.value });
                 }}
@@ -186,32 +160,18 @@ export default function PersonalPage() {
 
               <TextField
                 label="Địa chỉ"
-                defaultValue=""
-                id="contact-address"
                 variant="filled"
-                style={{ marginTop: 11, width: "100%" }}
+                fullWidth
                 value={userInfo.address}
-                sx={{
-                  ".css-10botns-MuiInputBase-input-MuiFilledInput-input": {
-                    marginTop: "12px",
-                  },
-                }}
                 onChange={(event) => {
                   setUserInfo({ ...userInfo, address: event.target.value });
                 }}
               />
               <TextField
                 label="Số điện thoại"
-                defaultValue=""
-                id="contact-address"
                 variant="filled"
-                style={{ marginTop: 11, width: "100%" }}
+                fullWidth
                 value={userInfo.phone_number}
-                sx={{
-                  ".css-10botns-MuiInputBase-input-MuiFilledInput-input": {
-                    marginTop: "12px",
-                  },
-                }}
                 onChange={(event) => {
                   setUserInfo({
                     ...userInfo,
@@ -219,28 +179,29 @@ export default function PersonalPage() {
                   });
                 }}
               />
-              <Box sx={{ marginTop: "30px" }}>
+              <Box sx={{ mt: 2 }}>
                 <Button
                   variant="contained"
-                  sx={{ color: "white !important" }}
-                  onClick={() => handleUpdateUserInfo()}
+                  color="primary"
+                  fullWidth
+                  onClick={handleUpdateUserInfo}
                 >
                   Cập nhật
                 </Button>
               </Box>
             </Stack>
           </Grid>
-          <Grid item xs={12} sm={1}></Grid>
-          <Grid item xs={12} sm={7}>
+          <Grid item xs={12} sm={8}>
             <Tabs
               value={historyTab}
               onChange={(event, newValue) => setHistoryTab(newValue)}
-              aria-label="disabled tabs example"
+              aria-label="user history tabs"
+              sx={{ mb: 2 }}
             >
               <Tab label="Lịch sử đặt hàng" />
             </Tabs>
 
-            {historyTab === 0 ? (
+            {historyTab === 0 && (
               <div style={{marginTop: '20px'}}>
                 <div
                   style={{
@@ -254,8 +215,6 @@ export default function PersonalPage() {
                 </div>
                 <UserCheckout />
               </div>
-            ) : (
-              <></>
             )}
           </Grid>
         </Grid>

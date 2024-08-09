@@ -225,7 +225,7 @@ export default function AdminOrder() {
         <Typography
           component="h2"
           variant="h6"
-          color="primary"
+          color="black"
           gutterBottom
           sx={{ textAlign: "left" }}
         >

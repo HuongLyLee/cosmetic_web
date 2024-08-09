@@ -17,7 +17,7 @@ export default function SearchBar({
           type="text"
           className="searchTerm"
           style={customStyle}
-          placeholder=" Nhập từ bạn muốn tìm kiếm"
+          placeholder=" Nhập từ bạn muốn tìm kiếm: review, da mụn, sữa tắm, son..."
           onChange={(event) => handleChange(event?.target?.value)}
           onKeyUp={(event) => {
             if (event?.code === "Backspace") {

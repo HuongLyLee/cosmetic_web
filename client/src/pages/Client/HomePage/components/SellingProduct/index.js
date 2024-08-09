@@ -61,7 +61,15 @@ export default function SellingProduct() {
               >
                 <a
                   className="btn rounded-pill py-3 px-5 text-white"
-                  style={{ backgroundColor: "#bd876a" }}
+                  style={{ backgroundColor: "#d8856a" }}
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = "#c8745a"; 
+                    e.target.style.transform = "scale(1.05)"; 
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = "#d8856a"; 
+                    e.target.style.transform = "scale(1)"; 
+                  }}
                   href="/product"
                 >
                   Xem thêm

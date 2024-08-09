@@ -114,7 +114,7 @@ export default function ProductDetail() {
                   <form className="display-flex" >
                     <div
                       className="qtyminus"
-                      style={{ background: "#ff6666" }}
+                      style={{ background: "#d8856a" }}
                       onClick={() => {
                         if (productQuantity - 1 >= 0) {
                           setProductQuantity(productQuantity - 1);
@@ -135,7 +135,7 @@ export default function ProductDetail() {
                     />
                     <div
                       className="qtyplus"
-                      style={{ background: "#ff6666" }}
+                      style={{ background: "#d8856a" }}
                       onClick={() => {
                         setProductQuantity(productQuantity + 1);
                       }}
@@ -146,24 +146,17 @@ export default function ProductDetail() {
                   <a
                     className="round-black-btn"
                     style={{
-                      background: "#ff6666",
-                      borderColor: "#ff6666",
+                      background: "#d8856a",
+                      borderColor: "#d8856a",
                       cursor: "pointer",
                     }}
                     onClick={() => {
                       if (!userData?._id) {
-                        return toast.error(
-                          "Bạn cần đăng nhập để thực hiện chức năng này"
-                        );
+                        return toast.error("Bạn cần đăng nhập để thực hiện chức năng này");
                       }
 
-                      if (
-                        productQuantity >
-                        Number(productDetail?.current_quantity)
-                      ) {
-                        return toast.error(
-                          "Số lượng lớn hơn số lượng sản phẩm hiện có"
-                        );
+                      if (productQuantity > Number(productDetail?.current_quantity)) {
+                        return toast.error("Số lượng lớn hơn số lượng sản phẩm hiện có");
                       }
 
                       addProductToCart({
